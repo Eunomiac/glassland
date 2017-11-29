@@ -1,0 +1,1868 @@
+﻿<!-- BACKGROUND AND CONTAINER -->
+<div class="background">
+    <!-- SHEET OPTIONS & PAGE TABS-->
+    <div class="spacer10"></div>
+    <span style="display:inline-block; width:20px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="attr sheetoptions settingssheet" name="attr_pagenumber" title="Settings" value="settings" />
+    <span class="sheet-attr">Settings</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="attr sheetoptions pages page1" name="attr_pagenumber" title="Page1" value="1" checked="checked" />
+    <span class="sheet-attr">Traits</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="attr sheetoptions pages page2" name="attr_pagenumber" title="Page2" value="2" />
+    <span class="sheet-attr">Rolls</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="attr sheetoptions pages page3" name="attr_pagenumber" title="Page3" value="3" />
+    <span class="sheet-attr">Details</span>
+    <br /><br />
+    <div class="settings">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subheader">Select Sheet Type:</span><br />
+    </div>
+    <input type="radio" class="attr sheetoptions sheettype magesheet" name="attr_sheettype" title="Mage" value="mage" checked="checked" style="width: 140px;" />
+    <span class="sheet-attr" style="margin-left: -144px;">Mage</span>
+
+    <input type="radio" class="attr sheetoptions sheettype mortalsheet" name="attr_sheettype" title="Mortal" value="mortal" style="width: 140px;" />
+    <span class="sheet-attr" style="margin-left: -144px;">Mortal</span>
+
+    <input type="radio" class="attr sheetoptions sheettype spiritsheet" name="attr_sheettype" title="Spirit" value="spirit" style="width: 140px;" />
+    <span class="sheet-attr" style="margin-left: -144px;">Spirit/Goetia</span>
+
+    <input type="radio" class="attr sheetoptions sheettype ghostsheet" name="attr_sheettype" title="Ghost" value="ghost" style="width: 140px;" />
+    <span class="sheet-attr" style="margin-left: -144px;">Ghost</span>
+
+    <input type="radio" class="attr sheetoptions sheettype constructsheet" name="attr_sheettype" title="Construct" value="construct" style="width: 140px;" />
+    <span class="sheet-attr" style="margin-left: -144px;">Construct</span>
+
+    <input type="radio" class="attr sheetoptions sheettype supernalsheet" name="attr_sheettype" title="Supernal" value="supernal" style="width: 140px;" />
+    <span class="sheet-attr" style="margin-left: -144px;">Supernal Being</span>
+    <br />
+    <div class="background-image"></div>
+
+    <!-- DICE ROLLER -->
+        <div class="diceroller" style="position:absolute; top: 0px; left: 880px;">
+            <table>
+                <tbody>
+                    <tr>
+                        <th colspan="2" class="sheet-bottom">
+                            DICE ROLLER
+                        </th>
+                    </tr>
+                    <tr class="rollstyle">
+                        <td rowspan="3" class="rollcontainer">
+                            <button type="roll" name="roll_check" value="@{rollstyle}@{rolltype}"></button>
+                        </td>
+                        <td>
+                            <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{roll_base}" title="Sheet Roll" checked="checked" />
+                            <span class="sheet-attr">Sheet Roll</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{rollattack}" />
+                            <span class="sheet-attr">Attack Roll</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bottom">
+                            <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{rollsimple}" />
+                            <span class="sheet-attr">Simple Roll</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" class="rolldisplay">
+                            <textarea type="text" name="attr_rolldisplay"></textarea>
+                        </td>
+                        <td>
+                            <input type="radio" class="sheet-attr" name="attr_rolltype" value="*0+1)d10!cs>10}>10]]}} {{chance=1}}" />
+                            <span class="sheet-attr">Chance</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="sheet-attr" name="attr_rolltype" value=")d10!cs>8}>8]]}}" title="Normal" checked="checked" />
+                            <span class="sheet-attr">Normal</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="sheet-attr" name="attr_rolltype" value=")d10!>9cs>8}>8]]}} {{9again=1}}" />
+                            <span class="sheet-attr">9-Again</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" class="sheet-attr" name="attr_rolltype" value=")d10!>8cs>8}>8]]}} {{8again=1}}" />
+                            <span class="sheet-attr">8-Again</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <!-- HEADER -->
+    <img class="header mage" src="https://i.imgur.com/7uHSBPt.png">
+    <img class="header mortal" src="https://i.imgur.com/7uHSBPt.png">
+    <img class="header spirit" src="https://i.imgur.com/7uHSBPt.png">
+    <img class="header ghost" src="https://i.imgur.com/7uHSBPt.png">
+    <img class="header construct" src="https://i.imgur.com/7uHSBPt.png">
+
+    <!-- SETTINGS PAGE -->
+    <div class="settings settings-page">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subheader">Customizable Attribute Settings</span>
+        <br>
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Defense Trait: </span>
+        <select name="attr_defense_base">
+            <option value="(((@{dexterity} + @{wits}) - abs(@{dexterity} - @{wits})) / 2)">Lowest</option>
+            <option value="(((@{dexterity} + @{wits}) + abs(@{dexterity} - @{wits})) / 2)">Highest</option>
+            <option value="@{wits}">Wits</option>
+            <option value="@{dexterity}">Dexterity</option>
+            <option value="((((@{dexterity} + @{wits}) - abs(@{dexterity} - @{wits})) / 2) + (((@{athletics} + 0) + abs(@{athletics} - 0)) / 2))" checked="checked">Lowest + Athletics</option>
+        </select>
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Base Size: </span><input type="number" name="attr_base_size" value="5" />
+        <input type="checkbox" class="sheet-normal" name="attr_giant" value="1" /><span></span><span> Giant</span>
+        <input type="checkbox" class="sheet-normal" name="attr_small_framed" value="-1" /><span></span><span> Small Framed</span>
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Bonus Health Levels:</span><input type="number" name="attr_bonus_health" value="0" />
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Bonus Willpower Points:</span><input type="number" name="attr_bonus_willpower" value="0" />
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Species Factor: </span><input type="number" name="attr_species_factor" value="5" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Fleet of Foot: </span><input type="number" name="attr_fleet_of_foot" value="0" />
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Fast Reflexes: </span><input type="number" name="attr_fast_reflexes" value="0" />
+    </div>
+
+    <!-- CHARACTER INFO FIELDS -->
+    <div class="clmn">
+        <div class="col100 centered">
+            <input class="topname bold centered" type="text" name="attr_character_name" value="(Your Name Here)">
+            <textarea class="mage titlebar header centered" type="text" name="attr_titles"></textarea>
+        </div>
+    </div>
+    <div class="clmn spacer10"></div>
+    <div class="clmn centered">
+        <div class="clmn col45 toptraits rightalign">
+            <div class="col20 leftalign">
+                Concept:
+            </div>
+            <div class="col80 leftalign">
+                <input class="trait" type="text" name="attr_concept">
+            </div>
+            <div class="col20 leftalign mage">
+                Virtue:
+            </div>
+            <div class="col80 leftalign mage">
+                <input class="trait" type="text" name="attr_virtue">
+            </div>
+            <div class="col20 leftalign mage">
+                Vice:
+            </div>
+            <div class="col80 leftalign mage">
+                <input class="trait" type="text" name="attr_vice">
+            </div>
+            <div class="col20 leftalign">
+                Player:
+            </div>
+            <div class="col80 leftalign">
+                <input class="trait" type="text" name="attr_player_name">
+            </div>
+        </div>
+        <div class="clmn col45 toptraits leftalign">
+            <div class="col20 mage">
+                Tower:
+            </div>
+            <div class="col80 mage">
+                <select class="trait bold" name="attr_watchtower">
+                    <option value="" selected="selected"></option>
+                    <option value="Shaikorth">The Tower of Shaikorth</option>
+                    <option value="Daoloth">The Tower of Daoloth</option>
+                    <option value="Beelzebub">The Tower of Beelzebub</option>
+                    <option value="Abbadon">The Tower of Abbadon</option>
+                    <option value="Xapham">The Tower of Xapham</option>
+                    <option value="Sariel">The Tower of Sariel</option>
+                </select>
+            </div>
+            <div class="col20 mortal">
+                Virtue:
+            </div>
+            <div class="col80 mortal">
+                <input class="trait" type="text" name="attr_virtue">
+            </div>
+            <div class="col20 mage">
+                School:
+            </div>
+            <div class="col80 mage">
+                <select class="trait bold" name="attr_school">
+                    <option value="" selected="selected"></option>
+                    <option value="Eldritch">The Eldritch School of Craft</option>
+                    <option value="Infernal">The Infernal School of Craft</option>
+                    <option value="Victorian">The Victorian School of Craft</option>
+                </select>
+            </div>
+            <div class="col20 mortal">
+                Vice:
+            </div>
+            <div class="col80 mortal">
+                <input class="trait" type="text" name="attr_vice">
+            </div>
+            <div class="col20 mage">
+                Firm:
+            </div>
+            <div class="col80 mage">
+                <select class="trait bold" name="attr_firm">
+                    <option value="" selected="selected"></option>
+                    <option value="GDTC">The Great Dreamer Trading Company</option>
+                    <option value="Bronze">The Bronze Association</option>
+                    <option value="Humor">The Humor Society</option>
+                    <option value="Independent">Glasslands Independent</option>
+                </select>
+            </div>
+            <div class="col20 mage">
+                Legacy:
+            </div>
+            <div class="col80 mage">
+                &nbsp;<input class="trait bold" type="text" name="attr_legacy" style="width: 90%;">
+            </div>
+        </div>
+    </div>
+
+    <div class="clmn spacer15"></div>
+
+    <!-- ATTRIBUTE FIELDS -->
+    <div class="clmn centered">
+        <span class="header horizborders">ATTRIBUTES</span>
+        <div class="spacer10"></div>
+        <div class="sheet-col80 leftalign">
+            <div class="sheet-3colrow">
+                <div class="clmn">
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_intelligence_flag" value="@{intelligence}" />
+                        <span class="sheet-attr">Intelligence</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_intelligence" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_intelligence" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_intelligence" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_intelligence" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_intelligence" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_intelligence" value="5" /><span></span>
+                    </div>
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_wits_flag" value="@{wits}" />
+                        <span class="sheet-attr">Wits</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_wits" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_wits" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_wits" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_wits" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_wits" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_wits" value="5" /><span></span>
+                    </div>
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_resolve_flag" value="@{resolve}" />
+                        <span class="sheet-attr">Resolve</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_resolve" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_resolve" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_resolve" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_resolve" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_resolve" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_resolve" value="5" /><span></span>
+                    </div>
+                </div>
+                <div class="clmn">
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_strength_flag" value="@{strength}" />
+                        <span class="sheet-attr">Strength</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_strength" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_strength" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_strength" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_strength" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_strength" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_strength" value="5" /><span></span>
+                    </div>
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_dexterity_flag" value="@{dexterity}" />
+                        <span class="sheet-attr">Dexterity</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_dexterity" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_dexterity" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_dexterity" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_dexterity" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_dexterity" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_dexterity" value="5" /><span></span>
+                    </div>
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_stamina_flag" value="@{stamina}" />
+                        <span class="sheet-attr">Stamina</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_stamina" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_stamina" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_stamina" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_stamina" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_stamina" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_stamina" value="5" /><span></span>
+                    </div>
+                </div>
+                <div class="clmn">
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_presence_flag" value="@{presence}" />
+                        <span class="sheet-attr">Presence</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_presence" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_presence" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_presence" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_presence" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_presence" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_presence" value="5" /><span></span>
+                    </div>
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_manipulation_flag" value="@{manipulation}" />
+                        <span class="sheet-attr">Manipulation</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_manipulation" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_manipulation" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_manipulation" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_manipulation" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_manipulation" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_manipulation" value="5" /><span></span>
+                    </div>
+                    <div class="col50">
+                        <input type="checkbox" class="sheet-attr" name="attr_composure_flag" value="@{composure}" />
+                        <span class="sheet-attr">Composure</span>
+                    </div>
+                    <div class="col40">
+                        <input type="radio" class="sheet-normal sheet-zero" name="attr_composure" value="0" /><span></span><input type="radio" class="sheet-normal" name="attr_composure" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_composure" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_composure" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_composure" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_composure" value="5" /><span></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clmn spacer15"></div>
+
+    <!-- SKILLS, MERITS, ARCANA, OTHER TRAITS -->
+    <div class="clmn">
+        <!-- HEADLINES -->
+        <div class="col21 header centered horizborders">
+            SKILLS
+        </div>
+        <div class="col75 centered" style="width: calc(76% + 20px);">
+            <div class="col40 header centered horizborders">
+                OTHER TRAITS
+            </div>
+        </div>
+        <div class="spacer10"></div>
+
+        <!--SKILLS -->
+        <div class="col21 topalign floatleft">
+            <div class="col100 subheader centered">
+                Mental
+            </div>
+            <div class="col100 subsubheader centered">
+                (-3 unskilled)
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_academics_flag" value="@{academics}" />
+                <span class="sheet-attr">Academics</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_academics" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_academics" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_academics" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_academics" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_academics" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_academics" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_crafts_flag" value="@{crafts}" />
+                <span class="sheet-attr">Crafts</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_crafts" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_crafts" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_crafts" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_crafts" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_crafts" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_crafts" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_enigmas_flag" value="@{enigmas}" />
+                <span class="sheet-attr">Enigmas</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_enigmas" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_enigmas" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_enigmas" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_enigmas" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_enigmas" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_enigmas" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_investigation_flag" value="@{investigation}" />
+                <span class="sheet-attr">Investigation</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_investigation" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_investigation" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_investigation" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_investigation" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_investigation" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_investigation" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_medicine_flag" value="@{medicine}" />
+                <span class="sheet-attr">Medicine</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_medicine" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_medicine" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_medicine" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_medicine" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_medicine" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_medicine" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_occult_flag" value="@{occult}" />
+                <span class="sheet-attr">Occult</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_occult" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_occult" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_occult" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_occult" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_occult" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_occult" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_politics_flag" value="@{politics}" />
+                <span class="sheet-attr">Politics</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_politics" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_politics" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_politics" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_politics" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_politics" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_politics" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_science_flag" value="@{science}" />
+                <span class="sheet-attr">Science</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_science" value="-3" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_science" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_science" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_science" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_science" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_science" value="5" /><span></span>
+            </div>
+            <div class="spacer10"></div>
+            <div class="col100 subheader centered">
+                Physical
+            </div>
+            <div class="col100 subsubheader centered">
+                (-1 unskilled)
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_athletics_flag" value="@{athletics}" />
+                <span class="sheet-attr">Athletics</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_athletics" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_athletics" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_athletics" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_athletics" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_athletics" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_athletics" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_brawl_flag" value="@{brawl}" />
+                <span class="sheet-attr">Brawl</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_brawl" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_brawl" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_brawl" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_brawl" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_brawl" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_brawl" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_firearms_flag" value="@{firearms}" />
+                <span class="sheet-attr">Firearms</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_firearms" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_firearms" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_firearms" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_firearms" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_firearms" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_firearms" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_larceny_flag" value="@{larceny}" />
+                <span class="sheet-attr">Larceny</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_larceny" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_larceny" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_larceny" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_larceny" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_larceny" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_larceny" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_ride_flag" value="@{ride}" />
+                <span class="sheet-attr">Ride</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_ride" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_ride" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_ride" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_ride" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_ride" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_ride" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_stealth_flag" value="@{stealth}" />
+                <span class="sheet-attr">Stealth</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_stealth" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_stealth" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_stealth" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_stealth" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_stealth" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_stealth" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_survival_flag" value="@{survival}" />
+                <span class="sheet-attr">Survival</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_survival" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_survival" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_survival" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_survival" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_survival" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_survival" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_weaponry_flag" value="@{weaponry}" />
+                <span class="sheet-attr">Weaponry</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_weaponry" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_weaponry" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_weaponry" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_weaponry" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_weaponry" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_weaponry" value="5" /><span></span>
+            </div>
+            <div class="spacer10"></div>
+            <div class="col100 subheader centered">
+                Social
+            </div>
+            <div class="col100 subsubheader centered">
+                (-1 unskilled)
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_animalken_flag" value="@{animalKen}" />
+                <span class="sheet-attr">Animal Ken</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_animalken" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_animalken" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_animalken" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_animalken" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_animalken" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_animalken" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_empathy_flag" value="@{empathy}" />
+                <span class="sheet-attr">Empathy</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_empathy" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_empathy" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_empathy" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_empathy" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_empathy" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_empathy" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_expression_flag" value="@{expression}" />
+                <span class="sheet-attr">Expression</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_expression" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_expression" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_expression" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_expression" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_expression" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_expression" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_intimidation_flag" value="@{intimidation}" />
+                <span class="sheet-attr">Intimidation</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_intimidation" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_intimidation" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_intimidation" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_intimidation" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_intimidation" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_intimidation" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_persuasion_flag" value="@{persuasion}" />
+                <span class="sheet-attr">Persuasion</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_persuasion" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_persuasion" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_persuasion" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_persuasion" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_persuasion" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_persuasion" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_socialize_flag" value="@{socialize}" />
+                <span class="sheet-attr">Socialize</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_socialize" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_socialize" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_socialize" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_socialize" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_socialize" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_socialize" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_streetwise_flag" value="@{streetwise}" />
+                <span class="sheet-attr">Streetwise</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_streetwise" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_streetwise" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_streetwise" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_streetwise" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_streetwise" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_streetwise" value="5" /><span></span>
+            </div>
+            <div class="fivedotleadin">
+                <input type="checkbox" class="sheet-attr" name="attr_subterfuge_flag" value="@{subterfuge}" />
+                <span class="sheet-attr">Subterfuge</span>
+            </div>
+            <div class="fivedots">
+                <input type="radio" class="sheet-normal sheet-zero" name="attr_subterfuge" value="-1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_subterfuge" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_subterfuge" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_subterfuge" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_subterfuge" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_subterfuge" value="5" /><span></span>
+            </div>
+        </div>
+
+        <!-- MERITS -->
+        <div class="col25 topalign">
+            <div class="col100 subheader centered">
+                Merits
+            </div>
+            <div class="col100 leftalign">
+                <div class="fivedotleadin"><input type="text" name="attr_merit1_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit1" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit1" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit1" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit1" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit1" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit1" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit2_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit2" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit2" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit2" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit2" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit2" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit2" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit3_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit3" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit3" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit3" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit3" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit3" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit3" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit4_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit4" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit4" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit4" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit4" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit4" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit4" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit5_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit5" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit5" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit5" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit5" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit5" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit5" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit6_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit6" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit6" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit6" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit6" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit6" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit6" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit7_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit7" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit7" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit7" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit7" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit7" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit7" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit8_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit8" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit8" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit8" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit8" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit8" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit8" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit9_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit9" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit9" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit9" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit9" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit9" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit9" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit10_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit10" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit10" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit10" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit10" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit10" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit10" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit11_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit11" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit11" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit11" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit11" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit11" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit11" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit12_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit12" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit12" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit12" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit12" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit12" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit12" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit13_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit13" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit13" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit13" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit13" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit13" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit13" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit14_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit14" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit14" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit14" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit14" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit14" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit14" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit15_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit15" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit15" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit15" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit15" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit15" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit15" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit16_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit16" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit16" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit16" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit16" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit16" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit16" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit17_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit17" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit17" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit17" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit17" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit17" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit17" value="5" /><span></span></div>
+                <div class="fivedotleadin"><input type="text" name="attr_merit18_name" /></div>
+                <div class="fivedots"><input type="radio" class="sheet-normal sheet-zero" name="attr_merit18" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_merit18" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_merit18" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_merit18" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_merit18" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_merit18" value="5" /><span></span></div>
+            </div>
+        </div>
+
+        <!-- ARCANA, CONDITIONS, SPECIALTIES -->
+        <div class="col33 topalign">
+            <!--ARCANA -->
+            <div class="col100 subheader centered">
+                Arcana
+            </div>
+            <div class="col50">
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_death_flag" value="@{death}" />
+                    <span class="sheet-attr sheet-arcana">Death</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_death" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_death" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_death" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_death" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_death" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_death" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_fate_flag" value="@{fate}" />
+                    <span class="sheet-attr sheet-arcana">Fate</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_fate" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_fate" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_fate" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_fate" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_fate" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_fate" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_forces_flag" value="@{forces}" />
+                    <span class="sheet-attr sheet-arcana">Forces</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_forces" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_forces" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_forces" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_forces" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_forces" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_forces" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_life_flag" value="@{life}" />
+                    <span class="sheet-attr sheet-arcana">Life</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_life" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_life" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_life" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_life" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_life" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_life" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_matter_flag" value="@{matter}" />
+                    <span class="sheet-attr sheet-arcana">Matter</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_matter" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_matter" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_matter" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_matter" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_matter" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_matter" value="5" /><span></span>
+                </div>
+            </div>
+            <div class="col50">
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_mind_flag" value="@{mind}" />
+                    <span class="sheet-attr sheet-arcana">Mind</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_mind" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_mind" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_mind" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_mind" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_mind" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_mind" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_prime_flag" value="@{prime}" />
+                    <span class="sheet-attr sheet-arcana">Prime</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_prime" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_prime" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_prime" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_prime" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_prime" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_prime" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_space_flag" value="@{space}" />
+                    <span class="sheet-attr sheet-arcana">Space</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_space" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_space" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_space" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_space" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_space" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_space" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_spirit_flag" value="@{spirit}" />
+                    <span class="sheet-attr sheet-arcana">Spirit</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_spirit" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_spirit" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_spirit" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_spirit" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_spirit" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_spirit" value="5" /><span></span>
+                </div>
+                <div class="fivedotleadin">
+                    <input type="checkbox" class="sheet-attr sheet-arcana" name="attr_time_flag" value="@{time}" />
+                    <span class="sheet-attr sheet-arcana">Time</span>
+                </div>
+                <div class="fivedots">
+                    <input type="radio" class="sheet-normal sheet-zero" name="attr_time" value="0" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_time" value="1" /><span></span><input type="radio" class="sheet-normal" name="attr_time" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_time" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_time" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_time" value="5" /><span></span>
+                </div>
+            </div>
+            <div class="spacer10"></div>
+            <!--CONDITIONS -->
+            <div class="col100 subheader centered">
+                Conditions
+            </div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition1_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition2_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition3_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition4_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition5_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition6_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition7_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition8_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition9_name" /></div>
+            <div class="col50 leftalign"><input type="text" name="attr_condition10_name" /></div>
+
+            <div class="spacer20"></div>
+            <!--SPECIALTIES -->
+            <div class="col100 subheader centered">
+                Specialties
+            </div>
+            <div class="col100 leftalign"><input type="text" name="attr_specializations1" /></div>
+            <div class="col100 leftalign"><input type="text" name="attr_specializations2" /></div>
+            <div class="col100 leftalign"><input type="text" name="attr_specializations3" /></div>
+            <div class="col100 leftalign"><input type="text" name="attr_specializations4" /></div>
+            <div class="col100 leftalign"><input type="text" name="attr_specializations5" /></div>
+        </div>
+
+        <!-- OTHER TRAITS -->
+        <div class="col20 topalign" style="margin-top: -10px;">
+            <div class="col100 subheader centered">
+                Health
+            </div>
+            <div class="col100 variablecontainer" style="height:35px;">
+                <input type="radio" class="sheet-normal" name="attr_health" value="1" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_1" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_1" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_1" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_1" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="2" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_2" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_2" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_2" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_2" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="3" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_3" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_3" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_3" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_3" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="4" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_4" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_4" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_4" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_4" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="5" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_5" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_5" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_5" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_5" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="6" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_6" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_6" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_6" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_6" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="7" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_7" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_7" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_7" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_7" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="8" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_8" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_8" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_8" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_8" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="9" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_9" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_9" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_9" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_9" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="10" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_10" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_10" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_10" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_10" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="11" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_11" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_11" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_11" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_11" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="12" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_12" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_12" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_12" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_12" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span><input type="radio" class="sheet-normal" name="attr_health" value="13" /><span></span><span class="healthboxcontainer"><input type="radio" class="sheet-whitedot" name="attr_healthbox_13" value="0" checked="checked" /><span class="sheet-whitedot"></span><input type="radio" class="sheet-bashingdot" name="attr_healthbox_13" value="1" /><span class="sheet-bashingdot"></span><input type="radio" class="sheet-lethaldot" name="attr_healthbox_13" value="2" /><span class="sheet-lethaldot"></span><input type="radio" class="sheet-aggravateddot" name="attr_healthbox_13" value="3" /><span class="sheet-aggravateddot"></span></span><span class="woundpenalties"><span>-1-2-3</span></span>
+            </div>
+            <div class="spacer10"></div>
+            <div class="col100 subheader centered">
+                Willpower
+            </div>
+            <div class="variablecontainer col100" style="height:35px;">
+                <input type="hidden" name="attr_willpower_flag">
+                <input type="radio" class="sheet-normal" name="attr_willpower" value="1" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box1"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="2" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box2"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="3" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box3"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="4" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box4"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="5" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box5"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="6" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box6"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="7" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box7"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="8" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box8"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="9" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box9"><span></span></span><input type="radio" class="sheet-normal" name="attr_willpower" value="10" /><span></span><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_willpower_box10"><span></span></span>
+            </div>
+            <div class="spacer10"></div>
+            <div class="col100 subheader centered">
+                <input type="checkbox" class="sheet-attr" name="attr_wisdom_flag" value="@{wisdom}" />
+                <span class="sheet-attr mage" style="font-size: 1em; ">Wisdom</span>
+            </div>
+            <div class="col100 centered">
+                <input type="radio" class="sheet-normal" name="attr_wisdom" value="7" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="5" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="6" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="7" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="8" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="9" /><span></span><input type="radio" class="sheet-normal" name="attr_wisdom" value="10" /><span></span>
+            </div>
+            <div class="spacer10"></div>
+            <div class="col100 subheader centered">
+                <input type="checkbox" class="sheet-attr" name="attr_competency_flag" value="@{competency}" />
+                <span class="sheet-attr mage" style="font-size: 1em; ">Competency</span>
+            </div>
+            <div class="col100 centered">
+                <input type="radio" class="sheet-normal" name="attr_competency" value="1" checked="checked" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="2" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="3" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="4" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="5" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="6" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="7" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="8" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="9" /><span></span><input type="radio" class="sheet-normal" name="attr_competency" value="10" /><span></span>
+            </div>
+            <div class="spacer10"></div>
+            <div class="col100 subheader centered">
+                Mana &amp; Essence
+            </div>
+            <div class="col100 centered">
+                <div class="col100 variablecontainer manacontainer">
+                    <input type="radio" class="manaboxspacer" name="attr_manapool" value="1"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box1"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box1"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box1"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="2"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box2"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box2"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box2"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="3"><span></span><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box3"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box3"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box3"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="4"><span></span><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box4"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box4"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box4"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="5"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box5"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box5"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box5"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="6"><span></span><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box6"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box6"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box6"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="7"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box7"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box7"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box7"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="8"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box8"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box8"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box8"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="9"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box9"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box9"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box9"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="10"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box10"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box10"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box10"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="11"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box11"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box11"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box11"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="12"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box12"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box12"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box12"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="13"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box13"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box13"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box13"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="14"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box14"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box14"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box14"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="15"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box15"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box15"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box15"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="16"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box16"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box16"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box16"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="17"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box17"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box17"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box17"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="18"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box18"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box18"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box18"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="19"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box19"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box19"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box19"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="20"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box20"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box20"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box20"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="21"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box21"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box21"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box21"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="22"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box22"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box22"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box22"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="23"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box23"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box23"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box23"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="24"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box24"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box24"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box24"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="25"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box25"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box25"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box25"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="26"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box26"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box26"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box26"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="27"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box27"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box27"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box27"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="28"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box28"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box28"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box28"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="29"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box29"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box29"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box29"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="30"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box30"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box30"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box30"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="31"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box31"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box31"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box31"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="32"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box32"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box32"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box32"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="33"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box33"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box33"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box33"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="34"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box34"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box34"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box34"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="35"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box35"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box35"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box35"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="36"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box36"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box36"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box36"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="37"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box37"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box37"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box37"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="38"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box38"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box38"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box38"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="39"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box39"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box39"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box39"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="40"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box40"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box40"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box40"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="41"><span></span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box41"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box41"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box41"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="42"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box42"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box42"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box42"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="43"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box43"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box43"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box43"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="44"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box44"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box44"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box44"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="45"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box45"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box45"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box45"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="46"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box46"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box46"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box46"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="47"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box47"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box47"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box47"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="48"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box48"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box48"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box48"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="49"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box49"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box49"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box49"><span class="sheet-essencedot"></span></span><input type="radio" class="manaboxspacer" name="attr_manapool" value="50"><span></span><span class="manaboxcontainer"><input type="radio" class="sheet-whitedot" value="0" checked="checked" name="attr_manaessence_box50"><span class="sheet-whitedot"></span><input type="radio" class="sheet-manadot" value="1" name="attr_manaessence_box50"><span class="sheet-manadot"></span><input type="radio" class="sheet-essencedot" value="0.01" name="attr_manaessence_box50"><span class="sheet-essencedot"></span></span>
+                </div>
+            </div>
+            <div class="col50 derived">
+                Size:<input type="number" name="attr_size" value="@{base_size}+@{giant}+@{small_framed}" disabled="disabled" />
+            </div>
+            <div class="col50 derived">
+                Speed:<input type="number" name="attr_speed" value="@{species_factor}+@{dexterity}+@{strength}+@{speed_penalty}+@{fleet_of_foot}" disabled="disabled" />
+            </div>
+            <div class="col50 derived">
+                Defense:<input type="number" name="attr_defense" value="@{defense_base}+@{defense_penalty}" disabled="disabled" />
+            </div>
+            <div class="col50 derived">
+                Armor:<input type="number" name="attr_ballistic_armor_display" value="@{ballistic_armor}" disabled="disabled" />/<input type="number" name="attr_general_armor_display" value="@{general_armor}" disabled="disabled" />
+            </div>
+            <div class="col50 derived">
+                Initiative:<input type="number" name="attr_initiative" value="@{dexterity}+@{composure}+@{initiative_penalty}+@{fast_reflexes}" disabled="disabled" />
+            </div>
+            <div class="col50 derived">
+                Mana/Turn:<input type="number" name="attr_manaperturn" value="@{manaturn}" disabled="disabled" />
+            </div>
+            <div class="col50 derived">
+                Yantras:<input type="number" name="attr_yantras" value="@{yantramax}" disabled="disabled" />
+            </div>
+            <div class="col50 derived">
+                Paradox:<input type="number" name="attr_paradox" value="@{paradoxrisk}" disabled="disabled" />
+            </div>
+        </div>
+
+        <div class="clmn weaponpanel firstbasepanel">
+            <div class="col100 centered"><div class="col60 subheader"> Weapons &amp; Armor </div></div><div class="col100">
+                <div class="col20"><div class="col100 centered bold"> Weapon/Spell </div><div class="col100 leftalign medium"><input type="radio" class="sheet-weapon" name="attr_attack" value="{{attack_name=@{attack_name0}}} {{weapon_damage=@{attack_damage0}}} {{range=@{attack_range0}}} @{attack_type0}" checked="checked" /><span></span>&nbsp; <input type="text" name="attr_attack_name0" class="weaponstat name" disabled="disabled" value="Unarmed" /></div></div><div class="col10"><div class="col100 centered leftborder bold"> Arcanum </div><div class="col100 centered leftborder medium"><select name="attr_arcanum_type0" class="weaponstat type arcana" /><option value="" checked="checked">~</option><option value="Death">Death</option><option value="Fate">Fate</option><option value="Forces">Forces</option><option value="Life">Life</option><option value="Matter">Matter</option><option value="Mind">Mind</option><option value="prime">Prime</option><option value="Space">Space</option><option value="Spirit">Spirit</option><option value="Time">Time</option></select></div></div><div class="col7"><div class="col100 centered leftborder bold"> Type </div><div class="col100 centered leftborder medium"><select name="attr_attack_type0" class="weaponstat type" /><option value="{{str=1}} {{bra=1}} {{result=[[{((@{strength}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})" checked="checked">Brawl</option><option value="{{str=1}} {{wea=1}} {{result=[[{((@{strength}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee</option><option value="{{dex=1}} {{fir=1}} {{result=[[{((@{dexterity}+@{firearms}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Gun</option><option value="{{dex=1}} {{ath=1}} {{result=[[{((@{dexterity}+@{athletics}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Thrown</option><option value="{{dex=1}} {{bra=1}} {{result=[[{((@{dexterity}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Brawl* (Fighting Finesse)</option><option value="{{dex=1}} {{wea=1}} {{result=[[{((@{dexterity}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee* (Fighting Finesse)</option><option value="{{cmp=1}} {{arc=1}} {{result=[[{((@{competency}+@{attackarcana}+?{Modifiers|0}+@{wound_penalty})">Casting</option><option value="{{cmp=1}} {{aim=1}} {{result=[[{((@{competency}+@{aimingstat}+?{Modifiers|0}+@{wound_penalty}+@{armor_penalty})">Aimed</option></select></div></div><div class="col12"><div class="col100 centered leftborder bold"> Damage </div><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_damage0" class="weaponstat dmg" value="0"/><select name="attr_dmg_type0" class="weaponstat damagetype"/><option value="B" selected="selected">Bashing</option><option value="L">Lethal</option><option value="A">Aggr.</option></select></div></div><div class="col10"><div class="col100 centered leftborder bold"> Range </div><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_range0" class="weaponstat range" disabled="disabled" value="Melee" /></div></div><div class="col7"><div class="col100 centered leftborder bold"> Ammo </div><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_magazine0" class="weaponstat mag" disabled="disabled" value="N/A" /></div></div><div class="col5"><div class="col100 centered leftborder bold"> Init </div><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_initiative0" class="weaponstat" disabled="disabled" value="0" /></div></div><div class="col5"><div class="col100 centered leftborder bold"> Str </div><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_strength0" class="weaponstat" disabled="disabled" value="0" /></div></div><div class="col5"><div class="col100 centered leftborder bold"> Size </div><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_size0" class="weaponstat" disabled="disabled" value="N/A" /></div></div><div class="col10"><div class="col100 centered leftborder bold"> Mana? </div><div class="col100 centered leftborder"><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_attack_mana0" disabled="disabled"><span></span></span></div></div></div><div class="col100"><div class="col20"><div class="col100 leftalign medium"><input type="radio" class="sheet-weapon" name="attr_attack" value="{{attack_name=@{attack_name1}}} {{weapon_damage=@{attack_damage1}}} {{range=@{attack_range1}}} @{attack_type1}" /><span></span>&nbsp; <input type="text" name="attr_attack_name1" class="weaponstat name" /></div></div><div class="col10"><div class="col100 centered leftborder medium"><select name="attr_arcanum_type1" class="weaponstat type arcana" /><option value="" checked="checked">~</option><option value="Death">Death</option><option value="Fate">Fate</option><option value="Forces">Forces</option><option value="Life">Life</option><option value="Matter">Matter</option><option value="Mind">Mind</option><option value="Prime">Prime</option><option value="Space">Space</option><option value="Spirit">Spirit</option><option value="Time">Time</option></select></div></div><div class="col7"><div class="col100 centered leftborder medium"><select name="attr_attack_type1" class="weaponstat type" /><option value="{{result=[[{((?{Modifiers|0})" checked="checked"></option><option value="{{str=1}} {{bra=1}} {{result=[[{((@{strength}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Brawl</option><option  value="{{str=1}} {{wea=1}} {{result=[[{((@{strength}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee</option><option  value="{{dex=1}} {{fir=1}} {{result=[[{((@{dexterity}+@{firearms}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Gun</option><option  value="{{dex=1}} {{ath=1}} {{result=[[{((@{dexterity}+@{athletics}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Thrown</option><option  value="{{dex=1}} {{bra=1}} {{result=[[{((@{dexterity}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Brawl* (Fighting Finesse)</option><option  value="{{dex=1}} {{wea=1}} {{result=[[{((@{dexterity}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee* (Fighting Finesse)</option><option value="{{cmp=1}} {{arc=1}} {{result=[[{((@{competency}+@{attackarcana}+?{Modifiers|0}+@{wound_penalty})">Casting</option><option value="{{cmp=1}} {{aim=1}} {{result=[[{((@{competency}+@{aimingstat}+?{Modifiers|0}+@{wound_penalty}+@{armor_penalty})">Aimed</option></select></div></div><div class="col12"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_damage1" class="weaponstat dmg" /><select name="attr_dmg_type1" class="weaponstat damagetype"/><option value="" selected="selected"></option><option value="B">Bashing</option><option value="L">Lethal</option><option value="A">Aggr.</option></select></div></div><div class="col10"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_range1" class="weaponstat range" /></div></div><div class="col7"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_magazine1" class="weaponstat mag" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_initiative1" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_strength1" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_size1" class="weaponstat" /></div></div><div class="col10"><div class="col100 centered leftborder"><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_attack_mana1"><span></span></span></div></div></div><div class="col100"><div class="col20"><div class="col100 leftalign medium"><input type="radio" class="sheet-weapon" name="attr_attack" value="{{attack_name=@{attack_name2}}} {{weapon_damage=@{attack_damage2}}} {{range=@{attack_range2}}} @{attack_type2}" /><span></span>&nbsp; <input type="text" name="attr_attack_name2" class="weaponstat name" /></div></div><div class="col10"><div class="col100 centered leftborder medium"><select name="attr_arcanum_type2" class="weaponstat type arcana" /><option value="" checked="checked">~</option><option value="Death">Death</option><option value="Fate">Fate</option><option value="Forces">Forces</option><option value="Life">Life</option><option value="Matter">Matter</option><option value="Mind">Mind</option><option value="Prime">Prime</option><option value="Space">Space</option><option value="Spirit">Spirit</option><option value="Time">Time</option></select></div></div><div class="col7"><div class="col100 centered leftborder medium"><select name="attr_attack_type2" class="weaponstat type" /><option value="{{result=[[{((?{Modifiers|0})" checked="checked"></option><option value="{{str=1}} {{bra=1}} {{result=[[{((@{strength}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Brawl</option><option  value="{{str=1}} {{wea=1}} {{result=[[{((@{strength}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee</option><option  value="{{dex=1}} {{fir=1}} {{result=[[{((@{dexterity}+@{firearms}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Gun</option><option  value="{{dex=1}} {{ath=1}} {{result=[[{((@{dexterity}+@{athletics}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Thrown</option><option  value="{{dex=1}} {{bra=1}} {{result=[[{((@{dexterity}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Brawl* (Fighting Finesse)</option><option  value="{{dex=1}} {{wea=1}} {{result=[[{((@{dexterity}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee* (Fighting Finesse)</option><option value="{{cmp=1}} {{arc=1}} {{result=[[{((@{competency}+@{attackarcana}+?{Modifiers|0}+@{wound_penalty})">Casting</option><option value="{{cmp=1}} {{aim=1}} {{result=[[{((@{competency}+@{aimingstat}+?{Modifiers|0}+@{wound_penalty}+@{armor_penalty})">Aimed</option></select></div></div><div class="col12"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_damage2" class="weaponstat dmg" /><select name="attr_dmg_type2" class="weaponstat damagetype"/><option value="" selected="selected"></option><option value="B">Bashing</option><option value="L">Lethal</option><option value="A">Aggr.</option></select></div></div><div class="col10"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_range2" class="weaponstat range" /></div></div><div class="col7"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_magazine2" class="weaponstat mag" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_initiative2" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_strength2" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_size2" class="weaponstat" /></div></div><div class="col10"><div class="col100 centered leftborder"><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_attack_mana2"><span></span></span></div></div></div><div class="col100"><div class="col20"><div class="col100 leftalign medium"><input type="radio" class="sheet-weapon" name="attr_attack" value="{{attack_name=@{attack_name3}}} {{weapon_damage=@{attack_damage3}}} {{range=@{attack_range3}}} @{attack_type3}" /><span></span>&nbsp; <input type="text" name="attr_attack_name3" class="weaponstat name" /></div></div><div class="col10"><div class="col100 centered leftborder medium"><select name="attr_arcanum_type3" class="weaponstat type arcana" /><option value="" checked="checked">~</option><option value="Death">Death</option><option value="Fate">Fate</option><option value="Forces">Forces</option><option value="Life">Life</option><option value="Matter">Matter</option><option value="Mind">Mind</option><option value="Prime">Prime</option><option value="Space">Space</option><option value="Spirit">Spirit</option><option value="Time">Time</option></select></div></div><div class="col7">
+                    <div class="col100 centered leftborder medium">
+                        <select name="attr_attack_type3" class="weaponstat type" /><option value="{{result=[[{((?{Modifiers|0})" checked="checked"></option><option value="{{str=1}} {{bra=1}} {{result=[[{((@{strength}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Brawl</option><option  value="{{str=1}} {{wea=1}} {{result=[[{((@{strength}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee</option><option  value="{{dex=1}} {{fir=1}} {{result=[[{((@{dexterity}+@{firearms}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Gun</option><option  value="{{dex=1}} {{ath=1}} {{result=[[{((@{dexterity}+@{athletics}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Thrown</option><option  value="{{dex=1}} {{bra=1}} {{result=[[{((@{dexterity}+@{brawl}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Brawl* (Fighting Finesse)</option><option  value="{{dex=1}} {{wea=1}} {{result=[[{((@{dexterity}+@{weaponry}+?{Modifiers|0}+@{wound_penalty}+@{weapon_penalty}+@{armor_penalty})">Melee* (Fighting Finesse)</option><option value="{{cmp=1}} {{arc=1}} {{result=[[{((@{competency}+@{attackarcana}+?{Modifiers|0}+@{wound_penalty})">Casting</option><option value="{{cmp=1}} {{aim=1}} {{result=[[{((@{competency}+@{aimingstat}+?{Modifiers|0}+@{wound_penalty}+@{armor_penalty})">Aimed</option></select></div></div><div class="col12"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_damage3" class="weaponstat dmg" /><select name="attr_dmg_type3" class="weaponstat damagetype"/><option value="" selected="selected"></option><option value="B">Bashing</option><option value="L">Lethal</option><option value="A">Aggr.</option></select></div></div><div class="col10"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_range3" class="weaponstat range" /></div></div><div class="col7"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_magazine3" class="weaponstat mag" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_initiative3" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_strength3" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_attack_size3" class="weaponstat" /></div></div><div class="col10"><div class="col100 centered leftborder"><span class="healthboxcontainer"><input type="checkbox" class="sheet-normal" name="attr_attack_mana3"><span></span></span></div></div></div></div><div class="clmn weaponpanel secondbasepanel"><div class="col100"><div class="col20"><div class="col100 centered bold"> Armor </div><div class="col100 leftalign medium"><input type="checkbox" class="sheet-weapon" name="attr_armor_flag0" value="1" /><span></span>&nbsp; <input type="text" name="attr_armor_name0" class="weaponstat name" /></div></div><div class="col10"><div class="col100 centered leftborder bold"> Arcanum </div><div class="col100 centered leftborder medium"><select name="attr_armorarcanum_type0" class="weaponstat type arcana" /><option value="" checked="checked">~</option><option value="Death">Death</option><option value="Fate">Fate</option><option value="Forces">Forces</option><option value="Life">Life</option><option value="Matter">Matter</option><option value="Mind">Mind</option><option value="Prime">Prime</option><option value="Space">Space</option><option value="Spirit">Spirit</option><option value="Time">Time</option></select></div></div><div class="col7"><div class="col100 centered leftborder bold"> Rating </div><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_ballistic0" class="weaponstat rating" />/<input type="text" name="attr_armor_general0" class="weaponstat rating" /></div></div><div class="col5"><div class="col100 centered leftborder bold"> Str </div><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_strength0" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder bold"> Def </div><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_defense0" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder bold"> Spd </div><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_speed0" class="weaponstat" /></div></div><div class="col45"><div class="col100 leftalign leftborder bold"> Description </div><div class="col100 leftalign leftborder medium"><input type="text" name="attr_armor_description0" class="weaponstat desc" /></div></div></div><div class="col100"><div class="col20"><div class="col100 leftalign medium"><input type="checkbox" class="sheet-weapon" name="attr_armor_flag1" value="1" /><span></span>&nbsp; <input type="text" name="attr_armor_name1" class="weaponstat name" /></div></div><div class="col10"><div class="col100 centered leftborder medium"><select name="attr_armorarcanum_type1" class="weaponstat type arcana" /><option value="" checked="checked">~</option><option value="Death">Death</option><option value="Fate">Fate</option><option value="Forces">Forces</option><option value="Life">Life</option><option value="Matter">Matter</option><option value="Mind">Mind</option><option value="Prime">Prime</option><option value="Space">Space</option><option value="Spirit">Spirit</option><option value="Time">Time</option></select></div></div><div class="col7"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_ballistic1" class="weaponstat rating" />/<input type="text" name="attr_armor_general1" class="weaponstat rating" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_strength1" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_defense1" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_speed1" class="weaponstat" /></div></div><div class="col45"><div class="col100 leftalign leftborder medium"><input type="text" name="attr_armor_description1" class="weaponstat desc" /></div></div></div><div class="col100"><div class="col20"><div class="col100 leftalign medium"><input type="checkbox" class="sheet-weapon" name="attr_armor_flag2" value="1" /><span></span>&nbsp; <input type="text" name="attr_armor_name2" class="weaponstat name" /></div></div><div class="col10"><div class="col100 centered leftborder medium"><select name="attr_armorarcanum_type2" class="weaponstat type arcana" /><option value="" checked="checked">~</option><option value="Death">Death</option><option value="Fate">Fate</option><option value="Forces">Forces</option><option value="Life">Life</option><option value="Matter">Matter</option><option value="Mind">Mind</option><option value="Prime">Prime</option><option value="Space">Space</option><option value="Spirit">Spirit</option><option value="Time">Time</option></select></div></div><div class="col7"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_ballistic2" class="weaponstat rating" />/<input type="text" name="attr_armor_general2" class="weaponstat rating" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_strength2" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_defense2" class="weaponstat" /></div></div><div class="col5"><div class="col100 centered leftborder medium"><input type="text" name="attr_armor_speed2" class="weaponstat" /></div></div><div class="col45"><div class="col100 leftalign leftborder medium"><input type="text" name="attr_armor_description2" class="weaponstat desc" /></div></div></div></div>
+
+    </div>
+
+<!-- PAGE 2 -->
+<div class="expandedsheet clmn" style="vertical-align: top;">
+    <div class="col50" style="vertical-align: top;">
+        <fieldset class="repeating_custom1">
+            <div class="sheet-customroll">
+                <div class="col55">
+                    Roll: <input type="text" class="name" name="attr_customrollname1">
+                </div>
+                <div class="col35">
+                    Action: <select class="sheet-customroll" name="attr_customrollaction1">
+                        <option value="Reflexive">Reflexive</option>
+                        <option value="Instant" selected="selected">Instant</option>
+                        <option value="Extended">Extended</option>
+                        <option value="Contested">Contested</option>
+                    </select>
+                </div>
+                <div class="rollcontainer col100">
+                    <button type='roll' class="sheet-roll" name='roll_customRoll1' value="&{template:wod-3part} {{name=@{character_name}}} {{roll_name=@{customRollName1}}} {{mod=[[?{Modifiers|0}]]}} {{part1=@{part1name_1}}} {{part2=@{part2name_1}}} {{part3=@{part3name_1}}} {{part1pool=@{part1pool_1}}} {{part2pool=@{part2pool_1}}} {{part3pool=@{part3pool_1}}} {{result=[[{((?{Modifiers|0}+(@{part1pool_1}+0)+(@{part2pool_1}+0)+(@{part3pool_1}+0))@{rolltype}" ></button>
+                </div>
+                <div class="col80">
+                Specs: <input type="text" name="attr_source1" style="width:80%;">
+                    </div>
+                    <div class="col10">
+                p <input type="text" class="pagenum partpool" name="attr_pnum1">
+                    </div>
+                <input type="text" class="partname" name="attr_part1name_1" /><input type="text" class="partpool" name="attr_part1pool_1" /><span>+</span><input type="text" class="partname" name="attr_part2name_1" /><input type="text" class="partpool" name="attr_part2pool_1" /><span>+</span><input type="text" class="partname" name="attr_part3name_1" /><input type="text" class="partpool" name="attr_part3pool_1" />
+                <br>
+                <textarea rows="4" cols="40" name="attr_part1text_1"></textarea>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col50">
+        <fieldset class="repeating_custom2">
+            <div class="sheet-customroll">
+                <div class="col55">
+                Roll: <input type="text" class="name" name="attr_customrollname2">
+                            </div>
+                <div class="col35">
+                Action: <select class="sheet-customroll" name="attr_customrollaction2">
+                        <option value="Reflexive">Reflexive</option>
+                        <option value="Instant" selected="selected">Instant</option>
+                        <option value="Extended">Extended</option>
+                        <option value="Contested">Contested</option>
+                    </select>
+                    </div>
+                <div class="rollcontainer col100">
+                    <button type='roll' class="sheet-roll" name='roll_customRoll2' value="&{template:wod-3part} {{name=@{character_name}}} {{roll_name=@{customRollName2}}} {{mod=[[?{Modifiers|0}]]}} {{part1=@{part1name_2}}} {{part2=@{part2name_2}}} {{part3=@{part3name_2}}} {{part1pool=@{part1pool_2}}} {{part2pool=@{part2pool_2}}} {{part3pool=@{part3pool_2}}} {{result=[[{((?{Modifiers|0}+(@{part1pool_2}+0)+(@{part2pool_2}+0)+(@{part3pool_2}+0))@{rolltype}" ></button>
+                </div>
+                <div class="col80">
+                Specs: <input type="text" name="attr_source2" style="width:80%;">
+                    </div>
+                    <div class="col10">
+                p <input type="text" class="partpool pagenum" name="attr_pnum2">
+                    </div>
+                <input type="text" class="partname" name="attr_part1name_2" /><input type="text" class="partpool" name="attr_part1pool_2" /><span>+</span><input type="text" class="partname" name="attr_part2name_2" /><input type="text" class="partpool" name="attr_part2pool_2" /><span>+</span><input type="text" class="partname" name="attr_part3name_2" /><input type="text" class="partpool" name="attr_part3pool_2" />
+                <br>
+                <textarea rows="4" cols="40" name="attr_part1text_2"></textarea>
+            </div>
+        </fieldset>
+    </div>
+ </div>
+
+<div class="expandedsheet2 clmn" style="vertical-align: top;">
+    <div class="col50" style="vertical-align: top; text-align: left;">
+        <div class="mage sheet-customroll extsheet2 centered">
+            <span class="subheader">Nimbus</span><br>
+            <textarea rows="2" cols="40" name="attr_nimbus"></textarea>
+        </div>
+        <div class="mage sheet-customroll extsheet2 centered">
+            <span class="subheader">Active Spells</span><br>
+            <textarea rows="2" cols="40" name="attr_activespells"></textarea>
+        </div>
+        <div class="mage sheet-customroll extsheet2 centered">
+            <span class="subheader">Obsession(s)</span><br>
+            <textarea rows="2" cols="40" name="attr_obsessions"></textarea>
+        </div>
+        <div class="sheet-customroll extsheet2 centered">
+            <span class="subheader">Possessions</span><br>
+            <textarea rows="2" cols="40" name="attr_possessions"></textarea>
+        </div>
+        <fieldset class="repeating_infoleft">
+            <div class="sheet-customroll extsheet2 centered">
+                <input type="text" class="title" name="attr_titleleft" /><br>
+                <textarea rows="2" cols="40" name="attr_textleft"></textarea>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col50"  style="vertical-align: top; text-align: right;">
+        <div class="mage sheet-customroll extsheet2 centered">
+            <span class="subheader">Dedicated Magical Tools</span><br>
+            <textarea rows="2" cols="40" name="attr_dedicatedmagicaltools"></textarea>
+        </div>
+        <div class="mage sheet-customroll extsheet2 centered">
+            <span class="subheader">Paradox Marks</span><br>
+            <textarea rows="2" cols="40" name="attr_paradoxmarks"></textarea>
+        </div>
+        <div class="mage sheet-customroll extsheet2 centered">
+            <span class="subheader">Oblations</span><br>
+            <textarea rows="2" cols="40" name="attr_oblations"></textarea>
+        </div>
+        <div class="sheet-customroll extsheet2 centered">
+            <span class="subheader mortal">Residence</span><span class="subheader mage">Sanctum</span>
+            <br>
+            <textarea rows="2" cols="40" name="attr_residence"></textarea>
+        </div>
+        <fieldset class="repeating_inforight">
+            <div class="sheet-customroll extsheet2 centered">
+                <input type="text" class="title" name="attr_titleright" /><br>
+                <textarea rows="2" cols="40" name="attr_textright"></textarea>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+
+</div>
+
+
+<!-- HIDDEN FIELDS AND FORMULAS -->
+<input type="hidden" name="attr_0" value="0" />
+<input type="hidden" name="attr_rollsimple" value="&{template:wod-simple} {{name=@{character_name}}} {{option=?{Dice Pool|0}}} {{result=[[{(?{Dice Pool|1}" />
+<input type="hidden" name="attr_roll3part" value="" />
+<input type="hidden" name="attr_rollsheet" value="&{template:wod} {{name=@{character_name}}} {{mod=?{modifiers|0}}} {{strength=@{strength}}} {{dexterity=@{dexterity}}} {{stamina=@{stamina}}} {{intelligence=@{intelligence}}} {{wits=@{wits}}} {{resolve=@{resolve}}} {{presence=@{presence}}} {{manipulation=@{manipulation}}} {{composure=@{composure}}} {{academics=@{academics}}} {{enigmas=@{enigmas}}} {{crafts=@{crafts}}} {{investigation=@{investigation}}} {{medicine=@{medicine}}} {{occult=@{occult}}} {{politics=@{politics}}} {{science=@{science}}} {{athletics=@{athletics}}} {{brawl=@{brawl}}} {{ride=@{ride}}} {{firearms=@{firearms}}} {{larceny=@{larceny}}} {{stealth=@{stealth}}} {{survival=@{survival}}} {{weaponry=@{weaponry}}} {{animalken=@{animalken}}} {{empathy=@{empathy}}} {{expression=@{expression}}} {{intimidation=@{intimidation}}} {{persuasion=@{persuasion}}} {{socialize=@{socialize}}} {{streetwise=@{streetwise}}} {{subterfuge=@{subterfuge}}} {{death=@{death}}} {{fate=@{fate}}} {{forces=@{forces}}} {{life=@{life}}} {{matter=@{matter}}} {{mind=@{mind}}} {{prime=@{prime}}} {{spirit=@{spirit}}} {{space=@{space}}} {{time=@{time}}} {{competency=@{competency}}} {{@{strength_flag}str=1}} {{@{dexterity_flag}dex=1}} {{@{stamina_flag}sta=1}} {{@{intelligence_flag}int=1}} {{@{wits_flag}wit=1}} {{@{resolve_flag}res=1}} {{@{presence_flag}pre=1}} {{@{manipulation_flag}man=1}} {{@{composure_flag}com=1}} {{@{academics_flag}aca=1}} {{@{enigmas_flag}enig=1}} {{@{crafts_flag}cra=1}} {{@{investigation_flag}inv=1}} {{@{medicine_flag}med=1}} {{@{occult_flag}occ=1}} {{@{politics_flag}pol=1}} {{@{science_flag}sci=1}} {{@{athletics_flag}ath=1}} {{@{brawl_flag}bra=1}} {{@{ride_flag}rid=1}} {{@{firearms_flag}fir=1}} {{@{larceny_flag}lar=1}} {{@{stealth_flag}ste=1}} {{@{survival_flag}sur=1}} {{@{weaponry_flag}wea=1}} {{@{animalken_flag}ani=1}} {{@{empathy_flag}emp=1}} {{@{expression_flag}exp=1}} {{@{intimidation_flag}inti=1}} {{@{persuasion_flag}per=1}} {{@{socialize_flag}soc=1}} {{@{streetwise_flag}stre=1}} {{@{subterfuge_flag}sub=1}} {{@{death_flag}deat=1}} {{@{fate_flag}fate=1}} {{@{forces_flag}forc=1}} {{@{life_flag}life=1}} {{@{matter_flag}matt=1}} {{@{mind_flag}mind=1}} {{@{prime_flag}prim=1}} {{@{spirit_flag}spir=1}} {{@{space_flag}spac=1}} {{@{time_flag}time=1}} {{@{competency_flag}cmp=1}} {{@{attackarcana_flag}arc=1}} {{@{aimingstat_flag}aim=1}} {{result=[[{(([[?{modifiers|0}+@{strength_flag}+@{dexterity_flag}+@{stamina_flag}+@{intelligence_flag}+@{wits_flag}+@{resolve_flag}+@{presence_flag}+@{manipulation_flag}+@{composure_flag}+@{academics_flag}+@{enigmas_flag}+@{crafts_flag}+@{investigation_flag}+@{medicine_flag}+@{occult_flag}+@{politics_flag}+@{science_flag}+@{athletics_flag}+@{brawl_flag}+@{ride_flag}+@{firearms_flag}+@{larceny_flag}+@{stealth_flag}+@{survival_flag}+@{weaponry_flag}+@{animalken_flag}+@{empathy_flag}+@{expression_flag}+@{intimidation_flag}+@{persuasion_flag}+@{socialize_flag}+@{streetwise_flag}+@{subterfuge_flag}+@{animalism_flag}+@{auspex_flag}+@{celerity_flag}+@{dominate_flag}+@{majesty_flag}+@{nightmare_flag}+@{obfuscate_flag}+@{protean_flag}+@{resilience_flag}+@{vigor_flag}+@{crúac_flag}+@{thebansorcery_flag}+@{death_flag}+@{fate_flag}+@{forces_flag}+@{life_flag}+@{matter_flag}+@{mind_flag}+@{prime_flag}+@{spirit_flag}+@{space_flag}+@{time_flag}+@{competency_flag}]])" />
+<input type="hidden" name="attr_rollattack" value="&{template:wod-attack} {{name=@{character_name}}} {{strength=@{strength}}} {{dexterity=@{dexterity}}} {{brawl=@{brawl}}} {{weaponry=@{weaponry}}} {{firearms=@{firearms}}} {{athletics=@{athletics}}} {{mod=[[?{modifiers|0}]]}} {{woundpenalty=[[@{wound_penalty}]]}} {{wpen=[[@{weapon_penalty}]]}} {{apen=[[@{armor_penalty}]]}} @{attack}" />
+
+                        <input type="hidden" name="attr_ballistic_armor" value="((@{armor_ballistic0}+0)*@{armor_flag0})+((@{armor_ballistic1}+0)*@{armor_flag1})+((@{armor_ballistic2}+0)*@{armor_flag2})" />
+                        <input type="hidden" name="attr_general_armor" value="((@{armor_general0}+0)*@{armor_flag0})+((@{armor_general1}+0)*@{armor_flag1})+((@{armor_general2}+0)*@{armor_flag2})" />
+                        <input type="hidden" name="attr_defense_penalty" value="((@{armor_defense0}+0)*@{armor_flag0})+((@{armor_defense1}+0)*@{armor_flag1})+((@{armor_defense2}+0)*@{armor_flag2})" />
+                        <input type="hidden" name="attr_speed_penalty" value="((@{armor_speed0}+0)*@{armor_flag0})+((@{armor_speed1}+0)*@{armor_flag1})+((@{armor_speed2}+0)*@{armor_flag2})" />
+                        <input type="hidden" name="attr_initiative_penalty" value="0" />
+                        <input type="hidden" name="attr_weapon_penalty" value="0" />
+                        <input type="hidden" name="attr_armor_penalty" value="0" />
+                        <input type="hidden" name="attr_wound_penalty" value="0" />
+                        <input type="hidden" name="attr_attack_pool" value="((@{attack_type0}+0)*@{attack_flag0})+((@{attack_type1}+0)*@{attack_flag1})+((@{attack_type2}+0)*@{attack_flag2})+((@{attack_type3}+0)*@{attack_flag3})" />
+                        <input type="hidden" name="attr_attack_base_damage" value="((@{attack_damage0}+0)*@{attack_flag0})+((@{attack_damage1}+0)*@{attack_flag1})+((@{attack_damage2}+0)*@{attack_flag2})+((@{attack_damage3}+0)*@{attack_flag3})" />
+                        <input type="hidden" name="attr_roll_array" />
+                        <input type="hidden" name="attr_roll_base" />
+                        <input type="hidden" name="attr_manaturn" value="0" />
+                        <input type="hidden" name="attr_yantramax" value="0" />
+                        <input type="hidden" name="attr_paradoxrisk" value="0" />
+                        <input type="hidden" name="attr_combomax" value="0" />
+                        <input type="hidden" name="attr_attackarcana" value="0" />
+                        <input type="hidden" name="attr_aimingstat" value="0" />
+
+
+                    </div>
+
+
+                    <div class="rolltemplates">
+                        <!-- ROLL TEMPLATES -->
+                        <rolltemplate class="sheet-rolltemplate-wod">
+                            <table>
+                                <tr><th>{{name}} rolls{{#roll_name}} {{roll_name}}{{/roll_name}}</th></tr>
+                                <tr>
+                                    <td class="attr">
+                                        {{^0str}}
+                                        Strength({{strength}})<br>
+                                        {{/0str}}
+                                        {{^0dex}}
+                                        Dexterity({{dexterity}})<br>
+                                        {{/0dex}}
+                                        {{^0sta}}
+                                        Stamina({{stamina}})<br>
+                                        {{/0sta}}
+                                        {{^0int}}
+                                        Intelligence({{intelligence}})<br>
+                                        {{/0int}}
+                                        {{^0wit}}
+                                        Wits({{wits}})<br>
+                                        {{/0wit}}
+                                        {{^0res}}
+                                        Resolve({{resolve}})<br>
+                                        {{/0res}}
+                                        {{^0pre}}
+                                        Presence({{presence}})<br>
+                                        {{/0pre}}
+                                        {{^0man}}
+                                        Manipulation({{manipulation}})<br>
+                                        {{/0man}}
+                                        {{^0com}}
+                                        Composure({{composure}})<br>
+                                        {{/0com}}
+                                        {{^0aca}}
+                                        Academics({{academics}})<br>
+                                        {{/0aca}}
+                                        {{^0enig}}
+                                        Enigmas({{enigmas}})<br>
+                                        {{/0enig}}
+                                        {{^0cra}}
+                                        Crafts({{crafts}})<br>
+                                        {{/0cra}}
+                                        {{^0inv}}
+                                        Investigation({{investigation}})<br>
+                                        {{/0inv}}
+                                        {{^0med}}
+                                        Medicine({{medicine}})<br>
+                                        {{/0med}}
+                                        {{^0occ}}
+                                        Occult({{occult}})<br>
+                                        {{/0occ}}
+                                        {{^0pol}}
+                                        Politics({{politics}})<br>
+                                        {{/0pol}}
+                                        {{^0sci}}
+                                        Science({{science}})<br>
+                                        {{/0sci}}
+                                        {{^0ath}}
+                                        Athletics({{athletics}})<br>
+                                        {{/0ath}}
+                                        {{^0bra}}
+                                        Brawl({{brawl}})<br>
+                                        {{/0bra}}
+                                        {{^0rid}}
+                                        Drive({{ride}})<br>
+                                        {{/0rid}}
+                                        {{^0fir}}
+                                        Firearms({{firearms}})<br>
+                                        {{/0fir}}
+                                        {{^0lar}}
+                                        Larceny({{larceny}})<br>
+                                        {{/0lar}}
+                                        {{^0ste}}
+                                        Stealth({{stealth}})<br>
+                                        {{/0ste}}
+                                        {{^0sur}}
+                                        Survival({{survival}})<br>
+                                        {{/0sur}}
+                                        {{^0wea}}
+                                        Weaponry({{weaponry}})<br>
+                                        {{/0wea}}
+                                        {{^0ani}}
+                                        Animal Ken({{animalKen}})<br>
+                                        {{/0ani}}
+                                        {{^0emp}}
+                                        Empathy({{empathy}})<br>
+                                        {{/0emp}}
+                                        {{^0exp}}
+                                        Expression({{expression}})<br>
+                                        {{/0exp}}
+                                        {{^0inti}}
+                                        Intimidation({{intimidation}})<br>
+                                        {{/0inti}}
+                                        {{^0per}}
+                                        Persuasion({{persuasion}})<br>
+                                        {{/0per}}
+                                        {{^0soc}}
+                                        Socialize({{socialize}})<br>
+                                        {{/0soc}}
+                                        {{^0stre}}
+                                        Streetwise({{streetwise}})<br>
+                                        {{/0stre}}
+                                        {{^0sub}}
+                                        Subterfuge({{subterfuge}})<br>
+                                        {{/0sub}}
+                                        {{^0anim}}
+                                        Animalism({{animalism}})<br>
+                                        {{/0anim}}
+                                        {{^0deat}}
+                                        Death({{death}})<br>
+                                        {{/0deat}}
+                                        {{^0fate}}
+                                        Fate({{fate}})<br>
+                                        {{/0fate}}
+                                        {{^0forc}}
+                                        Forces({{forces}})<br>
+                                        {{/0forc}}
+                                        {{^0life}}
+                                        Life({{life}})<br>
+                                        {{/0life}}
+                                        {{^0matt}}
+                                        Matter({{matter}})<br>
+                                        {{/0matt}}
+                                        {{^0mind}}
+                                        Mind({{mind}})<br>
+                                        {{/0mind}}
+                                        {{^0prim}}
+                                        Prime({{prime}})<br>
+                                        {{/0prim}}
+                                        {{^0spir}}
+                                        Spirit({{spirit}})<br>
+                                        {{/0spir}}
+                                        {{^0spac}}
+                                        Space({{space}})<br>
+                                        {{/0spac}}
+                                        {{^0time}}
+                                        Time({{time}})<br>
+                                        {{/0time}}
+                                        {{^0cmp}}
+                                        Competency({{competency}})<br>
+                                        {{/0cmp}}
+                                        Modifiers({{mod}})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="result">{{result}} Successes</td>
+                                </tr>
+                                <tr>
+                                    <td class="specialrollflag">
+                                        {{#chance}}
+                                        0C
+                                        {{/chance}}
+                                        {{#9again}}
+                                        9A
+                                        {{/9again}}
+                                        {{#8again}}
+                                        8A
+                                        {{/8again}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </rolltemplate>
+
+                        <rolltemplate class="sheet-rolltemplate-wod-simple">
+                            <table>
+                                <tr><th>{{name}} rolls</th></tr>
+                                <tr>
+                                    <td class="attr">
+                                        {{option}} dice for<br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="result">{{result}} Successes</td>
+                                </tr>
+                                <tr>
+                                    <td class="specialrollflag">
+                                        {{#chance}}
+                                        0C
+                                        {{/chance}}
+                                        {{#9again}}
+                                        9A
+                                        {{/9again}}
+                                        {{#8again}}
+                                        8A
+                                        {{/8again}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </rolltemplate>
+
+                        <rolltemplate class="sheet-rolltemplate-wod-3part">
+                            <table>
+                                <tr><th>{{name}} rolls{{#roll_name}} {{roll_name}}{{/roll_name}}</th></tr>
+                                <tr>
+                                    <td class="attr">
+                                        {{#part1}}
+                                        {{part1}}({{part1pool}})<br>
+                                        {{/part1}}
+                                        {{#part2}}
+                                        {{part2}}({{part2pool}})<br>
+                                        {{/part2}}
+                                        {{#part3}}
+                                        {{part3}}({{part3pool}})<br>
+                                        {{/part3}}
+                                        {{#^rollTotal() woundpenalty 0}}
+                                        Wound Penalty({{woundpenalty}})
+                                        {{/^rollTotal() woundpenalty 0}}
+                                        {{#^rollTotal() mod 0}}
+                                        Modifiers({{mod}})
+                                        {{/^rollTotal() mod 0}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="result">{{result}} Successes</td>
+                                </tr>
+                                <tr>
+                                    <td class="specialrollflag">
+                                        {{#chance}}
+                                        0C
+                                        {{/chance}}
+                                        {{#9again}}
+                                        9A
+                                        {{/9again}}
+                                        {{#8again}}
+                                        8A
+                                        {{/8again}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </rolltemplate>
+
+                        <rolltemplate class="sheet-rolltemplate-wod-attack">
+                            <table>
+                                <tr><th>{{name}} makes a {{attack_name}} attack</th></tr>
+                                <tr>
+                                    <td class="attr">
+                                        {{#str}}
+                                        Strength({{strength}})<br>
+                                        {{/str}}
+                                        {{#dex}}
+                                        Dexterity({{dexterity}})<br>
+                                        {{/dex}}
+                                        {{#bra}}
+                                        Brawl({{brawl}})<br>
+                                        {{/bra}}
+                                        {{#wea}}
+                                        Weaponry({{weaponry}})<br>
+                                        {{/wea}}
+                                        {{#fir}}
+                                        Firearms({{firearms}})<br>
+                                        {{/fir}}
+                                        {{#ath}}
+                                        Athletics({{athletics}})<br>
+                                        {{/ath}}
+                                        {{#1st}}
+                                        {{attack_name}}({{weapon_damage}})<br>
+                                        {{/1st}}
+                                        {{#^rollTotal() apen 0}}
+                                        Armor Penalty({{apen}})<br>
+                                        {{/^rollTotal() apen 0}}
+                                        {{#^rollTotal() wpen 0}}
+                                        Weapon Penalty({{wpen}})<br>
+                                        {{/^rollTotal() wpen 0}}
+                                        {{#^rollTotal() woundpenalty 0}}
+                                        Wound Penalty({{woundpenalty}})
+                                        {{/^rollTotal() woundpenalty 0}}
+                                        {{#^rollTotal() mod 0}}
+                                        Modifiers({{mod}})<br>
+                                        {{/^rollTotal() mod 0}}
+                                        {{#rollTotal() result 0}}
+                                        and misses with...<br>
+                                <tr>
+                                    <td class="result hit">{{result}} successes</td>
+                                </tr>
+                                {{/rollTotal() result 0}}
+
+                                {{#rollWasCrit() result}}
+                                and hits for
+                                <br>
+                                <tr>
+                                    <td class="result miss">{{result}}{{#2nd}} + {{weapon_damage}}{{/2nd}} Damage</td>
+                                </tr>
+                                {{/rollWasCrit() result}}
+                                </td></tr>
+                                <tr>
+                                    <td class="specialrollflag">
+                                        {{#chance}}
+                                        0C
+                                        {{/chance}}
+                                        {{#9again}}
+                                        9A
+                                        {{/9again}}
+                                        {{#8again}}
+                                        8A
+                                        {{/8again}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </rolltemplate>
+                    </div>
+
+                    <script type="text/worker">
+
+    var attributes = ["intelligence", "wits", "resolve", "strength", "dexterity", "stamina", "presence", "manipulation", "composure", "competency", "wisdom"];
+    var skills = ["academics","enigmas","crafts","investigation","medicine","occult","politics","science","athletics","brawl","ride","firearms","larceny","stealth","survival","weaponry","animalken","empathy","expression","intimidation","persuasion","socialize","streetwise","subterfuge"];
+    var normalStats = ["intelligence", "wits", "resolve", "strength", "dexterity", "stamina", "presence", "manipulation", "composure", "academics", "enigmas", "crafts", "investigation", "medicine", "occult", "politics", "science", "athletics", "brawl", "ride", "firearms", "larceny", "stealth", "survival", "weaponry", "animalken", "empathy", "expression", "intimidation", "persuasion", "socialize", "streetwise", "subterfuge", "competency", "wisdom"];
+    var powers = ["death","fate","forces","life","matter","mind","prime","spirit","space","time"];
+    var allStats = ["intelligence","wits","resolve","strength","dexterity","stamina","presence","manipulation","composure","academics","enigmas","crafts","investigation","medicine","occult","politics","science","athletics","brawl","ride","firearms","larceny","stealth","survival","weaponry","animalken","empathy","expression","intimidation","persuasion","socialize","streetwise","subterfuge","death","fate","forces","life","matter","mind","prime","spirit","space","time", "wisdom", "competency"];
+    var titles = ["Initiate", "Apprentice", "Disciple", "Adept", "Master"];
+    var manaAmounts = [10, 11, 12, 13, 15, 20, 25, 30, 50, 50];
+    var manaPerTurn = [1, 2, 3, 4, 5, 6, 7, 8, 10, 15];
+    var yantrasMax = [2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+    var paradoxRisk = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+    var combos = [1, 1, 2, 2, 2, 3, 3, 3, 4, 4];
+    on("change:intelligence_flag", function() {
+        updateRolls("intelligence");
+    });
+    on("change:wits_flag", function() {
+        updateRolls("wits");
+    });
+    on("change:resolve_flag", function() {
+        updateRolls("resolve");
+        updateWillpower();
+    });
+    on("change:strength_flag", function() {
+        updateRolls("strength");
+    });
+    on("change:dexterity_flag", function() {
+        updateRolls("dexterity");
+    });
+    on("change:stamina_flag", function() {
+        updateRolls("stamina");
+    });
+    on("change:presence_flag", function() {
+        updateRolls("presence");
+    });
+    on("change:manipulation_flag", function() {
+        updateRolls("manipulation");
+    });
+    on("change:composure_flag", function() {
+        updateRolls("composure");
+        updateWillpower();
+    });
+    on("change:academics_flag", function() {
+        updateRolls("academics");
+    });
+    on("change:enigmas_flag", function() {
+        updateRolls("enigmas");
+    });
+    on("change:crafts_flag", function() {
+        updateRolls("crafts");
+    });
+    on("change:investigation_flag", function() {
+        updateRolls("investigation");
+    });
+    on("change:medicine_flag", function() {
+        updateRolls("medicine");
+    });
+    on("change:occult_flag", function() {
+        updateRolls("occult");
+    });
+    on("change:politics_flag", function() {
+        updateRolls("politics");
+    });
+    on("change:science_flag", function() {
+        updateRolls("science");
+    });
+    on("change:athletics_flag", function() {
+        updateRolls("athletics");
+    });
+    on("change:brawl_flag", function() {
+        updateRolls("brawl");
+    });
+    on("change:ride_flag", function() {
+        updateRolls("ride");
+    });
+    on("change:firearms_flag", function() {
+        updateRolls("firearms");
+    });
+    on("change:larceny_flag", function() {
+        updateRolls("larceny");
+    });
+    on("change:stealth_flag", function() {
+        updateRolls("stealth");
+    });
+    on("change:survival_flag", function() {
+        updateRolls("survival");
+    });
+    on("change:weaponry_flag", function() {
+        updateRolls("weaponry");
+    });
+    on("change:animalken_flag", function() {
+        updateRolls("animalken");
+    });
+    on("change:empathy_flag", function() {
+        updateRolls("empathy");
+    });
+    on("change:expression_flag", function() {
+        updateRolls("expression");
+    });
+    on("change:intimidation_flag", function() {
+        updateRolls("intimidation");
+    });
+    on("change:persuasion_flag", function() {
+        updateRolls("persuasion");
+    });
+    on("change:socialize_flag", function() {
+        updateRolls("socialize");
+    });
+    on("change:streetwise_flag", function() {
+        updateRolls("streetwise");
+    });
+    on("change:subterfuge_flag", function() {
+        updateRolls("subterfuge");
+    });
+    on("change:intelligence", function() {
+        updateRolls("intelligence");
+    });
+    on("change:wits", function() {
+        updateRolls("wits");
+    });
+    on("change:resolve", function() {
+        updateRolls("resolve");
+    });
+    on("change:strength", function() {
+        updateRolls("strength");
+    });
+    on("change:dexterity", function() {
+        updateRolls("dexterity");
+    });
+    on("change:stamina", function() {
+        updateRolls("stamina");
+        updateHealth();
+    });
+    on("change:presence", function() {
+        updateRolls("presence");
+    });
+    on("change:manipulation", function() {
+        updateRolls("manipulation");
+    });
+    on("change:composure", function() {
+        updateRolls("composure");
+    });
+    on("change:academics", function() {
+        updateRolls("academics");
+    });
+    on("change:enigmas", function() {
+        updateRolls("enigmas");
+    });
+    on("change:crafts", function() {
+        updateRolls("crafts");
+    });
+    on("change:investigation", function() {
+        updateRolls("investigation");
+    });
+    on("change:medicine", function() {
+        updateRolls("medicine");
+    });
+    on("change:occult", function() {
+        updateRolls("occult");
+    });
+    on("change:politics", function() {
+        updateRolls("politics");
+    });
+    on("change:science", function() {
+        updateRolls("science");
+    });
+    on("change:athletics", function() {
+        updateRolls("athletics");
+    });
+    on("change:brawl", function() {
+        updateRolls("brawl");
+    });
+    on("change:ride", function() {
+        updateRolls("ride");
+    });
+    on("change:firearms", function() {
+        updateRolls("firearms");
+    });
+    on("change:larceny", function() {
+        updateRolls("larceny");
+    });
+    on("change:stealth", function() {
+        updateRolls("stealth");
+    });
+    on("change:survival", function() {
+        updateRolls("survival");
+    });
+    on("change:weaponry", function() {
+        updateRolls("weaponry");
+    });
+    on("change:animalken", function() {
+        updateRolls("animalken");
+    });
+    on("change:empathy", function() {
+        updateRolls("empathy");
+    });
+    on("change:expression", function() {
+        updateRolls("expression");
+    });
+    on("change:intimidation", function() {
+        updateRolls("intimidation");
+    });
+    on("change:persuasion", function() {
+        updateRolls("persuasion");
+    });
+    on("change:socialize", function() {
+        updateRolls("socialize");
+    });
+    on("change:streetwise", function() {
+        updateRolls("streetwise");
+    });
+    on("change:subterfuge", function() {
+        updateRolls("subterfuge");
+    });
+    on("change:death", function() {
+        updateRolls("death");
+        updateTitles("death");
+    });
+    on("change:death_flag", function() {
+        updateRolls("death");
+        updateTitles("death");
+    });
+    on("change:fate", function() {
+        updateRolls("fate");
+        updateTitles("fate");
+    });
+    on("change:fate_flag", function() {
+        updateRolls("fate");
+        updateTitles("fate");
+    });
+    on("change:forces", function() {
+        updateRolls("forces");
+        updateTitles("forces");
+    });
+    on("change:forces_flag", function() {
+        updateRolls("forces");
+        updateTitles("forces");
+    });
+    on("change:life", function() {
+        updateRolls("life");
+        updateTitles("life");
+    });
+    on("change:life_flag", function() {
+        updateRolls("life");
+        updateTitles("life");
+    });
+    on("change:matter", function() {
+        updateRolls("matter");
+        updateTitles("matter");
+    });
+    on("change:matter_flag", function() {
+        updateRolls("matter");
+        updateTitles("matter");
+    });
+    on("change:mind", function() {
+        updateRolls("mind");
+        updateTitles("mind");
+    });
+    on("change:mind_flag", function() {
+        updateRolls("mind");
+        updateTitles("mind");
+    });
+    on("change:prime", function() {
+        updateRolls("prime");
+        updateTitles("prime");
+    });
+    on("change:prime_flag", function() {
+        updateRolls("prime");
+        updateTitles("prime");
+    });
+    on("change:spirit", function() {
+        updateRolls("spirit");
+        updateTitles("spirit");
+    });
+    on("change:spirit_flag", function() {
+        updateRolls("spirit");
+        updateTitles("spirit");
+    });
+    on("change:space", function() {
+        updateRolls("space");
+        updateTitles("space");
+    });
+    on("change:space_flag", function() {
+        updateRolls("space");
+        updateTitles("space");
+    });
+    on("change:time", function() {
+        updateRolls("time");
+        updateTitles("time");
+    });
+    on("change:time_flag", function() {
+        updateRolls("time");
+        updateTitles("time");
+    });
+    on("change:wisdom", function() {
+        updateRolls("wisdom");
+    });
+    on("change:wisdom_flag", function() {
+        updateRolls("wisdom");
+    });
+    on("change:competency", function() {
+        updateRolls("competency");
+        updateMana();
+    });
+    on("change:competency_flag", function() {
+        updateRolls("competency");
+        updateMana();
+    });
+    on("change:rollstyle", function() {
+        updateRolls("rolltype");
+    });
+    on("change:attack_type0", function() {
+        updateRolls("rolltype");
+    });
+    on("change:attack_type1", function() {
+        updateRolls("rolltype");
+    });
+    on("change:attack_type2", function() {
+        updateRolls("rolltype");
+    });
+    on("change:attack_type3", function() {
+        updateRolls("rolltype");
+    });
+    on("change:attack", function() {
+        updateRolls("rolltype");
+        updateAttacks();
+    });
+    on("change:attack_initative0", function() {
+        updateAttacks();
+    });
+    on("change:attack_initative1", function() {
+        updateAttacks();
+    });
+    on("change:attack_initative2", function() {
+        updateAttacks();
+    });
+    on("change:attack_initative3", function() {
+        updateAttacks();
+    });
+    on("change:attack_initative4", function() {
+        updateAttacks();
+    });
+    on("change:attack_strength0", function() {
+        updateAttacks();
+    });
+    on("change:attack_strength1", function() {
+        updateAttacks();
+    });
+    on("change:attack_strength2", function() {
+        updateAttacks();
+    });
+    on("change:attack_strength3", function() {
+        updateAttacks();
+    });
+    on("change:attack_strength4", function() {
+        updateAttacks();
+    });
+    on("change:armor_flag0", function() {
+        updateAttacks();
+    });
+    on("change:armor_flag1", function() {
+        updateAttacks();
+    });
+    on("change:armor_flag2", function() {
+        updateAttacks();
+    });
+    on("change:armor_strength0", function() {
+        updateAttacks();
+    });
+    on("change:armor_strength1", function() {
+        updateAttacks();
+    });
+    on("change:armor_strength2", function() {
+        updateAttacks();
+    });
+    on("change:health", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_1", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_2", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_3", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_4", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_5", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_6", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_7", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_8", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_9", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_10", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_11", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_12", function() {
+        updateAttacks();
+    });
+    on("change:healthbox_13", function() {
+        updateAttacks();
+    });
+    on("change:base_size", function() {
+        updateHealth();
+    });
+    on("change:giant", function() {
+        updateHealth();
+    });
+    on("change:small_framed", function() {
+        updateHealth();
+    });
+    on("change:sheettype", function() {
+        updateHealth();
+    });
+    on("change:resilience", function() {
+        updateHealth();
+    });
+    on("change:bonus_health", function() {
+        updateHealth();
+    });
+    on("change:bonus_willpower", function() {
+        updateWillpower();
+    });
+    var updateTitles = function (stat) {
+
+        var titleArray = ["", "", "", "", ""]
+
+        getAttrs(["death", "fate", "forces", "life", "matter", "mind", "prime", "spirit", "space", "time"], function (v) {
+            powers.forEach(function (x) {
+                if (v[x] > 0) {
+                    var thisTitleNum = v[x] - 1;
+                    var thisTitle = titles[thisTitleNum];
+                    if (titleArray[thisTitleNum] === "")
+                        titleArray[thisTitleNum] = thisTitle + " of " + x.charAt(0).toUpperCase() + x.slice(1);
+                    else
+                        titleArray[thisTitleNum] = titleArray[thisTitleNum] + ", " + x.charAt(0).toUpperCase() + x.slice(1);
+                }
+            });
+            var titleString = "";
+            titleArray.reverse();
+            titleArray.forEach(function (x) {
+                if (x !== "") {
+                    titleString = titleString + ", ";
+                    if (x.includes(",")) {
+                        var n = x.lastIndexOf(",");
+                        var newString = x.substr(0, n) + " and" + x.substr(n + 1);
+                        titleString = titleString + newString;
+                    } else {
+                        titleString = titleString + x;
+                    }
+                }
+            });
+            if (titleString !== "")
+                titleString = titleString.slice(2);
+            setAttrs({
+                titles: titleString
+            });
+        });
+    };
+
+
+    var updateRolls = function(stat) {
+        var type;
+        var stat_flag = stat + "_flag";
+        var rarray = [];
+        getAttrs(["attack","rollstyle","roll_array","attack_type0","attack_type1","attack_type2","attack_type3","intelligence_flag","wits_flag","resolve_flag","strength_flag","dexterity_flag","stamina_flag","presence_flag","manipulation_flag","composure_flag","academics_flag","enigmas_flag","crafts_flag","investigation_flag","medicine_flag","occult_flag","politics_flag","science_flag","athletics_flag","brawl_flag","ride_flag","firearms_flag","larceny_flag","stealth_flag","survival_flag","weaponry_flag","animalken_flag","empathy_flag","expression_flag","intimidation_flag","persuasion_flag","socialize_flag","streetwise_flag","subterfuge_flag","intelligence","wits","resolve","strength","dexterity","stamina","presence","manipulation","composure","academics","enigmas","crafts","investigation","medicine","occult","politics","science","athletics","brawl","ride","firearms","larceny","stealth","survival","weaponry","animalken","empathy","expression","intimidation","persuasion","socialize","streetwise","subterfuge","death","death_flag","fate","fate_flag","forces","forces_flag","life","life_flag","matter","matter_flag","mind","mind_flag","prime","prime_flag","spirit","spirit_flag","space","space_flag","time","time_flag","wisdom", "wisdom_flag", "competency", "competency_flag"], function(v) {
+            allStats.forEach(function(x) {
+                var flagname = x + "_flag";
+                if(parseInt(v[flagname], 10) != 0) {
+                    rarray.push(x);
+                }
+            });
+            var prev_rarray = v.roll_array && v.roll_array != "" ? v.roll_array.split(",") : [];
+            if(stat != "rolltype") {
+                if(parseInt(v[stat_flag], 10) === 0) {
+                    if(rarray.indexOf(stat) > -1) {
+                        rarray.splice(rarray.indexOf(stat), 1);
+                    }
+                }
+                else {
+                    if(attributes.indexOf(stat) > -1) {
+                        type = "attribute";
+                    }
+                    else if(skills.indexOf(stat) > -1) {
+                        type = "skill";
+                    }
+                    else {
+                        type = "power";
+                    }
+                    if(type === "attribute") {
+                        if(rarray.filter(function(x){return attributes.indexOf(x) > -1}).length > 1) {
+                            rarray = [stat, prev_rarray.filter(function(x){return attributes.indexOf(x) > -1})[0]];
+                        }
+                    }
+                    if(type === "skill") {
+                        if(rarray.filter(function(x){return attributes.indexOf(x) > -1}).length < 2 && rarray.filter(function(x){return skills.indexOf(x) > -1}).length === 0) {
+                            rarray.unshift(stat);
+                        }
+                        else if(rarray.filter(function(x){return attributes.indexOf(x) > -1}).length < 2 && rarray.filter(function(x){return skills.indexOf(x) > -1}).length > 0) {
+                            rarray = rarray.filter(function(x) {return skills.indexOf(x) < 0;});
+                            rarray.unshift(stat);
+                        }
+                        else if(rarray.filter(function(x){return attributes.indexOf(x) > -1}).length > 1) {
+                            rarray = [stat, prev_rarray.filter(function(x){return attributes.indexOf(x) > -1})[0]];
+                        }
+                    }
+                    if(type === "power") {
+                        if(rarray.filter(function(x){return normalStats.indexOf(x) === -1}).length > 0) {
+                            rarray = rarray.filter(function(x){return normalStats.indexOf(x) > -1});
+                            rarray.unshift(stat);
+                        }
+                        else {
+                            rarray.unshift(stat);
+                        }
+                    }
+                }
+                if(rarray.length > 3) {
+                    rarray.length = 3;
+                }
+                var cleanup = {};
+                var diff = prev_rarray.filter(function(x) {return rarray.indexOf(x) < 0});
+                diff.forEach(function(x) {
+                    var flagname = x + "_flag";
+                    cleanup[flagname] = 0;
+                });
+                setAttrs(cleanup);
+            }
+            var final = parseInt(v[stat_flag], 10) === 0 || type === "rolltype" ? prev_rarray.join(",") : rarray.join(",");
+            var order = [];
+            rarray.filter(function(x){return attributes.indexOf(x) > -1}).forEach(function(x) {order.push(x);});
+            rarray.filter(function(x){return skills.indexOf(x) > -1}).forEach(function(x) {order.push(x);});
+            rarray.filter(function(x){return normalStats.indexOf(x) === -1}).forEach(function(x) {order.push(x);});
+            var base = "&{template:wod-simple} {{name=@{character_name}}} {{option=?{Dice Pool|0}}} {{result=[[{(?{Dice Pool|1}@{rolltype}";
+            if(order.length > 0) {
+                base = "&{template:wod-3part} {{name=@{character_name}}} {{mod=[[?{Modifiers|0}]]}} {{woundpenalty=[[@{wound_penalty}]]}} {{part1=" + order[0].charAt(0).toUpperCase() + order[0].slice(1) + "}} {{part1pool=" + v[order[0]] + "}}";
+                var result = " {{result=[[{((?{Modifiers|0}+@{wound_penalty}+" + v[order[0]];
+                if(order.length > 1) {
+                    base = base + " {{part2=" + order[1].charAt(0).toUpperCase() + order[1].slice(1) + "}} {{part2pool=" + v[order[1]] + "}}";
+                    result = result + "+" + v[order[1]];
+                }
+                if(order.length > 2) {
+                    base = base + " {{part3=" + order[2].charAt(0).toUpperCase() + order[2].slice(1) + "}} {{part3pool=" + v[order[2]] + "}}";
+                    result = result + "+" + v[order[2]];
+                }
+                base = base + result + ")@{rolltype}"
+            }
+            var display = "";
+            if(v.rollstyle === "@{roll_base}") {
+                if(order.length === 0) {
+                    display = "Simple Roll";
+                }
+                else {
+                    display = order.join(" +\n");
+                    display = display.replace(/\b./g, function(x){ return x.toUpperCase(); });
+                }
+            }
+            else if(v.rollstyle === "@{rollattack}") {
+                var regex = /attack_type(.)/;
+                var attack_type = "attack_type" + v.attack.match(regex)[1];
+                if(v[attack_type].indexOf("str=1") > -1) {
+                    display = display + "Strength +\n"
+                }
+                if(v[attack_type].indexOf("dex=1") > -1) {
+                    display = display + "Dexterity +\n"
+                }
+                if(v[attack_type].indexOf("bra=1") > -1) {
+                    display = display + "Brawl"
+                }
+                if(v[attack_type].indexOf("wea=1") > -1) {
+                    display = display + "Weaponry"
+                }
+                if(v[attack_type].indexOf("fir=1") > -1) {
+                    display = display + "Firearms"
+                }
+                if(v[attack_type].indexOf("ath=1") > -1) {
+                    display = display + "Athletics"
+                }
+            }
+            else if(v.rollstyle === "@{rollsimple}") {
+                display = "Simple Roll";
+            }
+            setAttrs({
+                roll_array: final,
+                roll_base: base,
+                rolldisplay: display
+            });
+        });
+    };
+
+    var updateHealth = function () {
+        getAttrs(["stamina", "base_size", "giant", "small_framed", "sheettype", "resilience", "bonus_health"], function (v) {
+            var health = parseInt(v.stamina, 10) + parseInt(v.base_size, 10) + parseInt(v.giant, 10) + parseInt(v.small_framed, 10) + parseInt(v.bonus_health, 10);
+            setAttrs({
+                health: health
+            });
+        });
+    };
+
+    var updateMana = function () {
+        getAttrs(["competency"], function (v) {
+            var mana = manaAmounts[parseInt(v.competency, 10) - 1];
+            var manaperturn = manaPerTurn[parseInt(v.competency, 10) - 1];
+            var yantras = yantrasMax[parseInt(v.competency, 10) - 1];
+            var paradox = paradoxRisk[parseInt(v.competency, 10) - 1];
+            var combospells = combos[parseInt(v.competency, 10) - 1];
+            setAttrs({
+                manapool: mana,
+                manaturn: manaperturn,
+                yantramax: yantras,
+                paradoxrisk: paradox,
+                combomax: combospells
+            });
+        });
+    };
+
+    var updateWillpower = function() {
+        getAttrs(["resolve","composure","bonus_willpower"], function(v) {
+            var willpower = parseInt(v.resolve, 10) + parseInt(v.composure, 10) + parseInt(v.bonus_willpower, 10);
+            setAttrs({
+                willpower: willpower
+            });
+        });
+    };
+
+    var updateAttacks = function () {
+        getAttrs(["strength", "attack", "attack_initiative0", "attack_initiative1", "attack_initiative2", "attack_initiative3", "attack_initiative4", "attack_strength0", "attack_strength1", "attack_strength2", "attack_strength3", "attack_strength4", "armor_flag0", "armor_flag1", "armor_flag2", "armor_strength0", "armor_strength1", "armor_strength2", "health", "healthbox_1", "healthbox_2", "healthbox_3", "healthbox_4", "healthbox_5", "healthbox_6", "healthbox_7", "healthbox_8", "healthbox_9", "healthbox_10", "healthbox_11", "healthbox_12", "healthbox_13", "healthbox_14", "healthbox_15", "healthbox_16"], function (v) {
+            var str = parseInt(v.strength, 10);
+            var regex = /attack_type(.)/;
+            var atknum = v.attack.match(regex)[1];
+            var init = isNaN(v["attack_initiative" + atknum]) === false && v["attack_initiative" + atknum] != "" ? v["attack_initiative" + atknum] : 0;
+            var wpen = str < v["attack_strength" + atknum] ? str - v["attack_strength" + atknum] : 0;
+            var apen = 0;
+            if (v.armor_flag0 != 0 && str < parseInt(v.armor_strength0)) { apen = apen + (str - parseInt(v.armor_strength0)); };
+            if (v.armor_flag1 != 0 && str < parseInt(v.armor_strength1)) { apen = apen + (str - parseInt(v.armor_strength1)); };
+            if (v.armor_flag2 != 0 && str < parseInt(v.armor_strength2)) { apen = apen + (str - parseInt(v.armor_strength2)); };
+            var wound_penalty = 0;
+            if (v["healthbox_" + v.health] != 0) {
+                wound_penalty = -3;
+            }
+            else if (v["healthbox_" + (v.health - 1)] != 0) {
+                wound_penalty = -2;
+            }
+            else if (v["healthbox_" + (v.health - 2)] != 0) {
+                wound_penalty = -1;
+            }
+            setAttrs({
+                weapon_penalty: wpen,
+                armor_penalty: apen,
+                initiative_penalty: init,
+                wound_penalty: wound_penalty
+            });
+        });
+    };
+
+                    </script>

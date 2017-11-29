@@ -1,0 +1,1665 @@
+﻿/*#region mage Sheet Settings */
+.charsheet {
+    font-family: 'Bookman Old Style';
+    font-weight: bold;
+    color: black;
+}
+
+.charsheet div {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.sheet-background {
+    background: none;
+    position: relative;
+    padding: 20px 20px 80px 20px;
+    width: 840px; /* 800px, 400 + 400, 266x3 */
+}
+
+input, textarea, select, .uneditable-input {
+    color: black;
+    box-shadow: unset !important;
+}
+
+.sheet-background-image {
+    width: 100%;
+    height: 100%
+    z-index: -1;
+}
+/*#endregion */
+
+/*#region Testing w/ Background Color */
+.charsheet .sheet-3colrow,
+.charsheet .sheet-2colrow,
+.charsheet .sheet-colrow,
+.charsheet .sheet-clmn,
+.charsheet .sheet-col100,
+.charsheet .sheet-col90,
+.charsheet .sheet-col80,
+.charsheet .sheet-col75,
+.charsheet .sheet-col70,
+.charsheet .sheet-col65,
+.charsheet .sheet-col60,
+.charsheet .sheet-col55,
+.charsheet .sheet-col50,
+.charsheet .sheet-col45,
+.charsheet .sheet-col40,
+.charsheet .sheet-col35,
+.charsheet .sheet-col33,
+.charsheet .sheet-col30,
+.charsheet .sheet-col21,
+.charsheet .sheet-col20,
+.charsheet .sheet-col25,
+.charsheet .sheet-col15,
+.charsheet .sheet-col12,
+.charsheet .sheet-fivedots,
+.charsheet .sheet-col10,
+.charsheet .sheet-col7,
+.charsheet .sheet-col5 {
+    /*background-color: rgba(0,0,0, 0.2);*/
+}
+/*#endregion*/
+
+/*#region Page Visibility Control */
+.sheet-mage,
+.sheet-mortal,
+.sheet-spirit,
+.sheet-ghost,
+.sheet-construct,
+.sheet-supernal,
+.sheet-settings {
+    display: none !important;
+}
+
+input.sheet-magesheet:checked  ~ div * .sheet-mage,
+input.sheet-mortalsheet:checked  ~ div * .sheet-mortal,
+input.sheet-spiritsheet:checked  ~ div * .sheet-spirit,
+input.sheet-ghostsheet:checked  ~ div * .sheet-ghost,
+input.sheet-constructsheet:checked  ~ div * .sheet-construct,
+input.sheet-supernalsheet:checked  ~ div * .sheet-construct,
+input.sheet-settingssheet:checked ~ div * .sheet-settings,
+input.sheet-settingssheet:checked ~ div.sheet-settings {
+    display: inline-block !important;
+}
+
+input.sheet-settingssheet:checked ~ div.sheet-3colrow,
+input.sheet-settingssheet:checked ~ div.sheet-2colrow,
+input.sheet-settingssheet:checked ~ div.sheet-clmn,
+input.sheet-settingssheet:checked ~ div.sheet-skills,
+input.sheet-settingssheet:checked ~ div.sheet-othertraits,
+input.sheet-settingssheet:checked ~ div.sheet-expandedsheet,
+input.sheet-settingssheet:checked ~ div.sheet-expandedsheet2,
+input.sheet-pages:checked ~ .sheet-sheettype,
+input.sheet-pages:checked ~ input.sheet-sheettype + span,
+input.sheet-page2:checked ~ div.sheet-3colrow,
+input.sheet-page2:checked ~ div.sheet-2colrow,
+input.sheet-page2:checked ~ div.sheet-clmn,
+input.sheet-page2:checked ~ div.sheet-skills,
+input.sheet-page2:checked ~ div.sheet-othertraits,
+input.sheet-page3:checked ~ div.sheet-3colrow,
+input.sheet-page3:checked ~ div.sheet-2colrow,
+input.sheet-page3:checked ~ div.sheet-clmn,
+input.sheet-page3:checked ~ div.sheet-skills,
+input.sheet-page3:checked ~ div.sheet-othertraits{
+    display: none !important;
+}
+
+input.sheet-page2:checked ~ div.sheet-expandedsheet {
+    display: inline-block !important;
+}
+
+input.sheet-page3:checked ~ div.sheet-expandedsheet2 {
+    display: inline-block !important;
+}
+
+/* BACKGROUND IMAGE */
+.sheet-background-image::after {
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+input.sheet-sheetoptions + span.sheet-attr {
+    background: white;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+input.sheet-magesheet:checked ~ .sheet-background-image::after {
+    background: url('https://i.imgur.com/tmkErRD.jpg');
+    background-size: 100% 100%;
+}
+
+input.sheet-mortalsheet:checked ~ .sheet-background-image::after {
+    background: url('https://i.imgur.com/tmkErRD.jpg');
+    background-size: 100% 100%;
+}
+
+input.sheet-spiritsheet:checked ~ .sheet-background-image::after {
+    background: url('https://i.imgur.com/tmkErRD.jpg');
+    background-size: 100% 100%;
+}
+
+input.sheet-ghostsheet:checked ~ .sheet-background-image::after {
+    background: url('https://i.imgur.com/tmkErRD.jpg');
+    background-size: 100% 100%;
+}
+
+input.sheet-constructsheet:checked ~ .sheet-background-image::after {
+    background: url('https://i.imgur.com/tmkErRD.jpg');
+    background-size: 100% 100%;
+}
+
+input.sheet-supernalsheet:checked ~ .sheet-background-image::after {
+    background: url('https://i.imgur.com/tmkErRD.jpg');
+    background-size: 100% 100%;
+}
+
+
+input.sheet-settingssheet:checked ~ .sheet-background-image::after,
+input.sheet-page2:checked ~ .sheet-background-image::after,
+input.sheet-page3:checked ~ .sheet-background-image::after{
+    background-size: 100%;
+}
+
+/* HEADER IMAGE */
+input.sheet-settingssheet:not(:checked) ~ input.sheet-magesheet:checked ~ img.sheet-header.sheet-mage,
+input.sheet-settingssheet:not(:checked) ~ input.sheet-mortalsheet:checked ~ img.sheet-header.sheet-mortal,
+input.sheet-settingssheet:not(:checked) ~ input.sheet-spiritsheet:checked ~ img.sheet-header.sheet-spirit,
+input.sheet-settingssheet:not(:checked) ~ input.sheet-ghostsheet:checked ~ img.sheet-header.sheet-ghost,
+input.sheet-settingssheet:not(:checked) ~ input.sheet-constructsheet:checked ~ img.sheet-header.sheet-construct,
+input.sheet-settingssheet:not(:checked) ~ input.sheet-supernalsheet:checked ~ img.sheet-header.sheet-supernal {
+    height: 150px;
+    display: block !important;
+    /*position: absolute;*/
+    top: 0px;
+    left: 0;
+    right: 0;
+    margin-top: -50px;
+}
+
+input.sheet-settingssheet:checked ~ div.sheet-header.sheet-settings {
+    height: 500px;
+    display: block !important;
+}
+
+input.sheet-settingssheet:checked + span.sheet-attr,
+input.sheet-page1:checked + span.sheet-attr,
+input.sheet-page2:checked + span.sheet-attr,
+input.sheet-page3:checked + span.sheet-attr{
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+}
+
+input.sheet-settingssheet:checked ~ div * input.sheet-attr:checked + span.sheet-attr,
+input.sheet-sheetoptions.sheet-settingssheet:checked + span.sheet-attr {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+}
+
+input.sheet-settingssheet:checked ~ div * input.sheet-weapon:checked + span + .sheet-weaponstat.sheet-name {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+    font-weight: bold;
+}
+
+input.sheet-magesheet:checked ~ div * input.sheet-attr:checked + span.sheet-attr,
+input.sheet-magesheet:checked ~ span > input.sheet-attr:checked + span.sheet-attr,
+input.sheet-sheetoptions.sheet-magesheet:checked +span.sheet-attr,
+input.sheet-magesheet:checked ~ div * input.sheet-weapon:checked + span + .sheet-weaponstat.sheet-name {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+    font-weight: bold;
+}
+
+input.sheet-mortalsheet:checked ~ div * input.sheet-attr:checked + span.sheet-attr,
+input.sheet-mortalsheet:checked ~ span > input.sheet-attr:checked + span.sheet-attr,
+input.sheet-sheetoptions.sheet-mortalsheet:checked +span.sheet-attr,
+input.sheet-mortalsheet:checked ~ div * input.sheet-weapon:checked + span + .sheet-weaponstat.sheet-name {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+    font-weight: bold;
+}
+
+input.sheet-spiritsheet:checked ~ div * input.sheet-attr:checked + span.sheet-attr,
+input.sheet-spiritsheet:checked ~ span > input.sheet-attr:checked + span.sheet-attr,
+input.sheet-sheetoptions.sheet-spiritsheet:checked +span.sheet-attr,
+input.sheet-spiritsheet:checked ~ div * input.sheet-weapon:checked + span + .sheet-weaponstat.sheet-name {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+    font-weight: bold;
+}
+
+input.sheet-ghostsheet:checked ~ div * input.sheet-attr:checked + span.sheet-attr,
+input.sheet-ghostsheet:checked ~ span > input.sheet-attr:checked + span.sheet-attr,
+input.sheet-sheetoptions.sheet-ghostsheet:checked +span.sheet-attr,
+input.sheet-ghostsheet:checked ~ div * input.sheet-weapon:checked + span + .sheet-weaponstat.sheet-name {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+    font-weight: bold;
+}
+
+input.sheet-constructsheet:checked ~ div * input.sheet-attr:checked + span.sheet-attr,
+input.sheet-constructsheet:checked ~ span > input.sheet-attr:checked + span.sheet-attr,
+input.sheet-sheetoptions.sheet-constructsheet:checked +span.sheet-attr,
+input.sheet-constructsheet:checked ~ div * input.sheet-weapon:checked + span + .sheet-weaponstat.sheet-name {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+    font-weight: bold;
+}
+
+input.sheet-supernalsheet:checked ~ div * input.sheet-attr:checked + span.sheet-attr,
+input.sheet-supernalsheet:checked ~ span > input.sheet-attr:checked + span.sheet-attr,
+input.sheet-sheetoptions.sheet-supernalsheet:checked +span.sheet-attr,
+input.sheet-supernalsheet:checked ~ div * input.sheet-weapon:checked + span + .sheet-weaponstat.sheet-name {
+    color: #dcc7a4;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
+    font-weight: bold;
+}
+
+.sheet-expandedsheet,
+.sheet-expandedsheet2,
+.sheet-rolltemplates {
+    display: none;
+}
+/*#endregion*/
+
+/*#region Layout & Spacers */
+
+.charsheet .sheet-3colrow,
+.charsheet .sheet-2colrow,
+.charsheet .sheet-colrow,
+.charsheet .sheet-col100,
+.charsheet .sheet-clmn {
+    width: 100%;
+}
+
+.charsheet .sheet-col90 {
+    width: calc(90% - 5px);
+}
+
+.charsheet .sheet-col80 {
+    width: calc(80% - 4px);
+}
+
+.charsheet .sheet-col75 {
+    width: calc(75% - 1px);
+}
+
+.charsheet .sheet-col70 {
+    width: calc(70% - 4px);
+}
+
+.charsheet .sheet-col65 {
+    width: calc(65% - 4px);
+}
+
+.charsheet .sheet-col60 {
+    width: calc(60% - 4px);
+}
+
+.charsheet .sheet-col55 {
+    width: calc(55% - 4px);
+}
+
+.charsheet .sheet-2colrow .sheet-clmn,
+.charsheet .sheet-col50 {
+    width: calc(50% - 3px);
+}
+
+.charsheet .sheet-col45 {
+    width: calc(45% - 2px);
+}
+
+.charsheet .sheet-col40 {
+    width: calc(40% - 2px);
+}
+
+.charsheet .sheet-col36 {
+    width: calc(36% - 2px);
+}
+
+.charsheet .sheet-col35 {
+    width: calc(35% - 1px);
+}
+
+.charsheet .sheet-3colrow .sheet-clmn,
+.charsheet .sheet-col33 {
+    width: calc(33% - 1px);
+}
+
+.charsheet .sheet-col30 {
+    width: calc(30% - 1px);
+}
+
+.charsheet .sheet-col25 {
+    width: calc(25% - 4px);
+}
+
+.charsheet .sheet-col21 {
+    width: calc(21% - 2px);
+}
+
+.charsheet .sheet-col20 {
+    width: calc(20% - 1px);
+}
+
+.charsheet .sheet-col15 {
+    width: calc(15% - 1px);
+}
+
+.charsheet .sheet-col12 {
+    width: calc(12% - 1px);
+}
+
+.charsheet .sheet-col10 {
+    width: calc(10% - 1px);
+}
+
+.charsheet .sheet-col7 {
+    width: calc(7% - 1px);
+}
+
+.charsheet .sheet-col5 {
+    width: calc(5% - 1px);
+}
+
+.charsheet .sheet-spacer50 {
+    display: block;
+    height: 50px;
+}
+
+.charsheet .sheet-spacer40 {
+    display: block;
+    height: 40px;
+}
+
+.charsheet .sheet-spacer30 {
+    display: block;
+    height: 30px;
+}
+
+.charsheet .sheet-spacer20 {
+    display: block;
+    height: 20px;
+}
+
+.charsheet .sheet-spacer15 {
+    display: block;
+    height: 15px;
+}
+
+.charsheet .sheet-spacer10 {
+    display: block;
+    height: 10px;
+}
+
+.charsheet .sheet-spacer5 {
+    display: block;
+    height: 5px;
+}
+
+.charsheet .sheet-centered {
+    text-align: center;
+}
+
+.charsheet .sheet-leftalign {
+    text-align: left;
+}
+
+.charsheet .sheet-rightalign {
+    text-align: right;
+}
+
+.charsheet .sheet-topalign {
+    vertical-align: top;
+}
+
+.charsheet .sheet-margin20 {
+    margin: 0px 20px;
+}
+
+.charsheet .sheet-leftborder {
+    /*border-left: 1px solid black;*/
+}
+
+.charsheet .sheet-fivedotleadin {
+    width: calc(100% - 77px);
+}
+.charsheet .sheet-fivedots {
+    width: 72px;
+}
+
+/*#endregion*/
+
+/*#region Diceroller */
+.sheet-diceroller {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ffff99;
+}
+
+.charsheet .sheet-diceroller table th {
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.charsheet .sheet-diceroller table {
+    border: solid 1px #000000;
+}
+
+.charsheet .sheet-diceroller table td {
+    border-right: solid 1px #000000;
+}
+
+.charsheet .sheet-diceroller table .sheet-bottom {
+    border-bottom: solid 1px #000000;
+}
+
+.charsheet .sheet-diceroller .sheet-rollcontainer {
+    background: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/New%20World%20of%20Darkness%20Official/die.png') no-repeat center;
+    background-size: contain;
+    border-bottom: solid 1px #000000;
+}
+
+.charsheet .sheet-diceroller button:before {
+    font-family: "Courier" !important;
+    content: "Roll" !important;
+    background: none !important;
+}
+
+.charsheet .sheet-diceroller button {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+.charsheet .sheet-diceroller .sheet-rolldisplay textarea {
+    resize: none;
+    overflow: hidden;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    padding: 0px;
+    text-align: center;
+    height: 70px;
+    pointer-events: none;
+    width: 120px;
+}
+/*#endregion*/
+
+/*#region General Formatting */
+
+.charsheet input[type=text] {
+    display: inline-block;
+    width: 100%;
+    font-family: 'Bookman Old Style';
+    font-weight: normal;
+    font-size: 12px;
+    height: 20px;
+    border: 0px;
+    border-radius: 0px;
+    background: none;
+    line-height:20px;
+    vertical-align:top;
+    margin: 0px;
+    padding: 0px;
+    border-bottom: 1px solid black;
+}
+
+.charsheet input[type=text].sheet-trait {
+    border: none;
+}
+
+.charsheet select {
+    display: inline-block;
+    width: 90%;
+    background: none;
+    border: none;
+    font-family: 'Bookman Old Style';
+    font-weight: normal;
+    font-size: 12px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    color: #000000;
+}
+
+
+.charsheet textarea {
+    display: inline-block;
+    width:100%;
+    margin:0px;
+    resize:none;
+    font-family: 'Bookman Old Style';
+    font-weight: normal;
+    color: #000000;
+}
+
+.charsheet textarea.sheet-titlebar {
+    height: 2em;
+    color: #663300;
+    font-size: 1.5em;
+    background: none;
+    font-variant: small-caps;
+    font-style:italic;
+    border:none;
+    pointer-events: none;
+    width:90%;
+}
+
+.sheet-header {
+    display: inline-block;
+    font-size: 2em;
+    font-weight: bolder;
+}
+
+.sheet-horizborders {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 3px 0px;
+}
+
+.sheet-subheader {
+    font-size: 1.4em;
+    font-weight: bolder;
+}
+
+.sheet-subsubheader {
+    font-size: 0.8em;
+    font-weight: normal;
+    font-style: italic;
+    line-height: 10px;
+    vertical-align: top;
+}
+
+div.sheet-toptraits > div,
+div.sheet-toptraits > div > input,
+div.sheet-toptraits > div > select {
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    vertical-align: top;
+}
+
+div.sheet-toptraits > div > select {
+    width: 100% !important;
+}
+
+.charsheet .sheet-bold {
+    font-weight: bold !important;
+}
+
+.charsheet .sheet-medium {
+    font-weight: normal !important;
+}
+
+.charsheet input[type=text].sheet-topname {
+    color: black;
+    font-size: 2em;
+    background: none;
+    font-variant: small-caps;
+    font-style:normal;
+    border:none;
+    width:90%;
+    overflow:hidden;
+}
+
+/*.charsheet table td, .charsheet table th {
+    font-size: 1em;
+    font-weight: bolder;
+    font-family: 'Bookman Old Style';
+    text-align: left;
+    width: 0%;
+    border: 0px #000000;
+    padding: 2px;
+    vertical-align: middle;
+    color: #000000;
+    margin:0px 0px;
+    line-height: 1em;
+}*/
+
+/*.charsheets table td {
+    white-space: nowrap;
+    text-align: left;
+}
+
+.sheet-3colrow table th, .sheet-skills table th, .sheet-othertraits table th {
+    font-size: 1.7em;
+    font-weight: bolder;
+    font-family: 'Bookman Old Style';
+    color: #000000;
+    text-decoration: overline underline;
+    text-align: center;
+}*/
+
+/*.sheet-skills table {
+    width: 200px;
+    border-right: solid 1px black;
+}
+
+.sheet-skills td {
+    line-height: 1em;
+}*/
+
+
+
+.sheet-skills {
+    float: left;
+
+}
+
+.charsheet table.sheet-attributes td.sheet-category {
+    font-style:italic;
+    font-weight:normal;
+    color:#2f2f2f;
+    text-align: right;
+    padding-right: 20px;
+}
+
+input.sheet-attr {
+    width: 87px;
+    cursor: pointer;
+    position: relative;
+    opacity: 0;
+    z-index: 9999;
+}
+
+.charsheet div.sheet-subheader {
+    height: 20px;
+}
+.charsheet div.sheet-subheader input.sheet-attr {
+    height: 25px;
+}
+
+.charsheet .sheet-floatleft {
+    float: left;
+    margin-right: 5px;
+}
+
+.charsheet div.sheet-firstbasepanel {
+    position: absolute;
+    top: 915px;
+    left: 200px;
+    width: 700px;
+}
+
+.charsheet div.sheet-secondbasepanel {
+    position: absolute;
+    top: 1027px;
+    left: 200px;
+    width: 690px;
+}
+
+input.sheet-arcana {
+    width: 50px;
+}
+
+span.sheet-attr {
+    display: inline-block;
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    margin-left: -91px;
+}
+
+span.sheet-arcana {
+    margin-left: -51px;
+    font-variant: small-caps;
+}
+/*#endregion*/
+
+/*#region Selection & Option Elements */
+input.sheet-opt {
+    width: 87px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    opacity: 0;
+    z-index: 9999;
+}
+
+span.sheet-opt {
+    text-align: center;
+    display: inline-block;
+    font-size: 13px;
+    background: #4a6486;
+    color: #ffff99;
+    font-weight: bold;
+    border-radius: 4px;
+
+    width: 87px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    margin-left: -91px;
+}
+
+input.sheet-opt:checked + span.sheet-opt
+{
+    background: #ab8b57;
+    color: #ffff99;
+    border-radius: 4px;
+}
+/*#endregion*/
+
+/*#region Dot & Checkbox Formatting */
+/* Hide actual dot/checkbox */
+input[type="radio"].sheet-normal,
+input.sheet-weapon,
+input[type="checkbox"].sheet-normal
+{
+    position: absolute;
+    opacity: 0.0;
+    width: 15px;
+    cursor: pointer;
+    z-index: 10;
+    margin-top: 5px;
+}
+
+input.sheet-weapon {
+    margin-top: 0px;
+}
+
+/* Styles common to fake dot and checkbox */
+input[type="radio"].sheet-normal + span::before,
+input.sheet-weapon + span::before,
+input[type="checkbox"].sheet-normal + span::before,
+.sheet-permadot::before
+{
+    border: solid 1px #000000;
+    line-height: 11px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: rgba(204, 153, 102,0.4);
+
+    /*box-shadow: 0 0 0px #000;*/
+
+    /*background: #000000;
+    background: -moz-radial-gradient(#f6f6f6, #dfdfdf);
+    background: -webkit-radial-gradient(#f6f6f6, #dfdfdf);
+    background: radial-gradient(#f6f6f6, #dfdfdf);*/
+}
+
+/* Styles unique to fake dot (checked or left of checked) */
+input[type="radio"].sheet-normal + span::before,
+input.sheet-weapon:checked + span::before,
+.sheet-permadot::before
+{
+    content: "•";
+    width: 10px;
+    height: 10px;
+    font-size: 41.9px;
+    font-family: "Arial";
+    text-indent: -2px;
+    font-weight: normal;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+input.sheet-weapon + span::before
+{
+    content: "";
+    width: 10px;
+    height: 10px;
+    font-size: 35px;
+    font-family: "Arial";
+    text-indent: -1px;
+
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+/* Styles unique to fake checkbox (unchecked) */
+input[type="checkbox"].sheet-normal + span::before
+{
+    position:relative;
+    content: "";
+    opacity: 1.0;
+    width: 10px;
+    height: 10px;
+    font-size: 12px;
+    border-radius: 1px;
+}
+
+/* Styles unique to fake checkbox (checked) */
+input[type="checkbox"].sheet-normal:checked + span::before
+{
+    content: "✖" !important;
+    color: black;
+    background: rgba(204, 153, 102,0.6);
+    font-size: 14px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    text-align:left;
+    text-indent: -0.75px;
+}
+
+/* Remove dot from all radios _after_ selected one */
+input[type="radio"].sheet-normal:checked ~ input[type="radio"] + span::before
+{
+    content: "";
+}
+
+input.sheet-used+span::before
+{
+    content: "✖";
+    width: 12px;
+    height: 12px;
+    font-size: 12px;
+
+    -moz-border-radius: 0%;
+    -webkit-border-radius: 0%;
+    border-radius: 0%;
+}
+
+input.sheet-zero:checked + span::before
+{
+    opacity: 0;
+}
+
+input.sheet-zero:hover + span::before
+{
+    opacity: 0.25;
+    font-size: 12px;
+    content: "✖";
+    text-indent: 0.5px;
+}
+
+input.sheet-zero + span::before
+{
+    opacity: 0;
+}
+/*#endregion*/
+
+/*input.sheet-DP1Spec + span::before,
+input.sheet-DP2Spec + span::before,
+input.sheet-DP2Spec + span::before,
+input.sheet-DP3Spec + span::before,
+input.sheet-DP4Spec + span::before,
+input.sheet-DP5Spec + span::before
+{
+    opacity: 1;
+    margin-bottom: 10px;
+}
+
+div.sheet-DP1,
+div.sheet-DP2,
+div.sheet-DP2,
+div.sheet-DP3,
+div.sheet-DP4,
+div.sheet-DP5
+{
+    display: inline;
+}
+div.sheet-DP1wSpec,
+div.sheet-DP2wSpec,
+div.sheet-DP2wSpec,
+div.sheet-DP3wSpec,
+div.sheet-DP4wSpec,
+div.sheet-DP5wSpec
+{
+    display: none;
+}
+
+input.sheet-DP1Spec:checked ~ div.sheet-DP1,
+input.sheet-DP2Spec:checked ~ div.sheet-DP2,
+input.sheet-DP2Spec:checked ~ div.sheet-DP2,
+input.sheet-DP3Spec:checked ~ div.sheet-DP3,
+input.sheet-DP4Spec:checked ~ div.sheet-DP4,
+input.sheet-DP5Spec:checked ~ div.sheet-DP5
+{
+    display: none;
+}
+
+input.sheet-DP1Spec:checked ~ div.sheet-DP1wSpec,
+input.sheet-DP2Spec:checked ~ div.sheet-DP2wSpec,
+input.sheet-DP2Spec:checked ~ div.sheet-DP2wSpec,
+input.sheet-DP3Spec:checked ~ div.sheet-DP3wSpec,
+input.sheet-DP4Spec:checked ~ div.sheet-DP4wSpec,
+input.sheet-DP5Spec:checked ~ div.sheet-DP5wSpec
+{
+    display: inline;
+}
+
+h4.sheet-SCorI1,
+h4.sheet-SCorI2,
+h4.sheet-CorC1,
+h4.sheet-CorC2
+{
+    display: block;
+}
+
+input.sheet-SCorI1,
+input.sheet-SCorI2,
+input.sheet-CorC1,
+input.sheet-CorC2
+{
+    width: 120px;
+}
+
+input.sheet-SCorI1:checked ~ h4.sheet-SCorI1,
+input.sheet-SCorI2:checked ~ h4.sheet-SCorI2
+{
+    display: none;
+}
+
+input.sheet-CorC1:checked ~ h4.sheet-CorC1,
+input.sheet-CorC2:checked ~ h4.sheet-CorC2
+{
+    display: none;
+}*/
+
+/*#region Roll Template*/
+.sheet-rolltemplate-wod table,
+.sheet-rolltemplate-wod-attack table,
+.sheet-rolltemplate-wod-simple table,
+.sheet-rolltemplate-wod-3part table
+{
+    width: 189px;
+    height: 100%;
+    background: url(https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/New%20World%20of%20Darkness%20Official/roll.jpg) top left;
+    background-size: 189px 100%;
+    background-repeat: no-repeat;
+    font-family: 'Bookman Old Style';
+    font-weight: bold;
+    border-spacing: 0;
+}
+
+.sheet-rolltemplate-wod th,
+.sheet-rolltemplate-wod-attack th,
+.sheet-rolltemplate-wod-simple th,
+.sheet-rolltemplate-wod-3part th
+{
+    color: rgb(112, 0, 0);
+    padding: 20px 20px 2px 20px;
+    line-height: 1.2em;
+    font-size: 1.2em;
+    text-align: left;
+}
+
+
+.sheet-rolltemplate-wod td,
+.sheet-rolltemplate-wod-attack td,
+.sheet-rolltemplate-wod-simple td,
+.sheet-rolltemplate-wod-3part td
+{
+    padding: 2px 20px 2px 20px;
+    font-size: 1.0em;
+    vertical-align: top;
+}
+
+.sheet-rolltemplate-wod .sheet-result,
+.sheet-rolltemplate-wod-attack .sheet-result,
+.sheet-rolltemplate-wod-simple .sheet-result,
+.sheet-rolltemplate-wod-3part .sheet-result
+{
+    font-size: 1.2em;
+    text-align: center;
+    color: rgb(112, 0, 0);
+    padding: 2px 20px 2px 20px;
+}
+
+
+.sheet-rolltemplate-wod .inlinerollresult,
+.sheet-rolltemplate-wod-attack .sheet-result .inlinerollresult,
+.sheet-rolltemplate-wod-simple .inlinerollresult,
+.sheet-rolltemplate-wod-3part .inlinerollresult
+{
+    background-color: transparent;
+    color: #000000;
+    border: none;
+}
+
+.sheet-rolltemplate-wod-attack .inlinerollresult
+ {
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    font-size: 1em;
+    padding: 0px;
+}
+
+.sheet-rolltemplate-wod .inlinerollresult.fullcrit,
+.sheet-rolltemplate-wod-attack .sheet-result .inlinerollresult.fullcrit,
+.sheet-rolltemplate-wod-simple .inlinerollresult.fullcrit,
+.sheet-rolltemplate-wod-3part .inlinerollresult.fullcrit
+{
+    color: #000000;
+    border: none;
+}
+
+.sheet-rolltemplate-wod .inlinerollresult.fullfail,
+.sheet-rolltemplate-wod-attack .sheet-result .inlinerollresult.fullfail,
+.sheet-rolltemplate-wod-simple .inlinerollresult.fullfail,
+.sheet-rolltemplate-wod-3part .inlinerollresult.fullfail
+{
+    color: #000000;
+    border: none;
+}
+
+.sheet-rolltemplate-wod .inlinerollresult.importantroll,
+.sheet-rolltemplate-wod-attack .inlinerollresult.importantroll,
+.sheet-rolltemplate-wod-simple .inlinerollresult.importantroll,
+.sheet-rolltemplate-wod-3part .inlinerollresult.importantroll
+{
+    color: #000000;
+    border: none;
+}
+
+.sheet-rolltemplate-wod .sheet-specialrollflag,
+.sheet-rolltemplate-wod-attack .sheet-specialrollflag,
+.sheet-rolltemplate-wod-simple .sheet-specialrollflag,
+.sheet-rolltemplate-wod-3part .sheet-specialrollflag {
+    color: #000000;
+    height: 30px;
+    text-align: right;
+    vertical-align: top;
+}
+/*#endregion*/
+
+/*#region Variable Container (Health, Willpower, etc)*/
+.sheet-variablecontainer
+{
+    padding: 0px;
+    text-align: center;
+}
+
+/* Remove dot from all radios _after_ selected one */
+.sheet-variablecontainer input[type="radio"].sheet-normal:checked ~ input[type="radio"] + span::before,
+.sheet-variablecontainer input[type="radio"].sheet-manaboxspacer:checked ~ input[type="radio"] + span::before
+{
+    opacity: 0;
+    display: none;
+}
+
+.sheet-variablecontainer input[type="radio"] {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.sheet-variablecontainer input[type="radio"].sheet-whitedot,
+.sheet-variablecontainer input[type="radio"].sheet-bashingdot,
+.sheet-variablecontainer input[type="radio"].sheet-lethaldot,
+.sheet-variablecontainer input[type="radio"].sheet-aggravateddot,
+.sheet-variablecontainer input[type="radio"].sheet-manadot,
+.sheet-variablecontainer input[type="radio"].sheet-essencedot
+{
+    pointer-events: auto;
+}
+
+/* -----BOXES----- */
+.sheet-variablecontainer .sheet-healthboxcontainer,
+.sheet-variablecontainer .sheet-manaboxcontainer {
+    position: absolute;
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer input
+{
+    top: 10px;
+    right: -3px;
+    position: absolute;
+    opacity: 0;
+    width: 15px;
+    cursor: pointer;
+    margin-top: 5px;
+    z-index: 101;
+}
+
+.sheet-variablecontainer .sheet-manaboxcontainer input
+{
+    top: 0px;
+    right: -3px;
+    position: absolute;
+    opacity: 0;
+    width: 15px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.sheet-variablecontainer span.sheet-manaboxcontainer {
+    line-height: 10px;
+}
+
+/*.sheet-variablecontainer span.sheet-manaboxspacer {
+    display: inline-block;
+    opacity: 0;
+    width: 12px;
+    height: 11px;
+}*/
+
+.sheet-variablecontainer .sheet-healthboxcontainer input + span::before,
+.sheet-variablecontainer .sheet-manaboxcontainer input + span::before
+{
+    top: 18px;
+    right: 0px;
+    position: absolute;
+    content: "";
+    opacity: 1.0;
+    width: 10px;
+    height: 10px;
+    font-size: 12px;
+
+    border-radius: 1px;
+
+    border: solid 1px #000000;
+    line-height: 11px;
+    text-align: center;
+    vertical-align: middle;
+    background-color:rgba(204, 153, 102,0.4);
+
+}
+
+div.sheet-manacontainer {
+    line-height: 10px;
+    width: 140px;
+}
+
+.sheet-variablecontainer .sheet-manaboxcontainer input + span::before {
+    top: 0px;
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer input:checked + span::before,
+.sheet-variablecontainer .sheet-manaboxcontainer input:checked + span::before
+{
+    box-shadow: 0 0 2px transparent;
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer input[type="radio"].sheet-whitedot:checked + span::before,
+.sheet-variablecontainer .sheet-manaboxcontainer input[type="radio"].sheet-whitedot:checked + span::before
+{
+    content: "" !important;
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer input[type="radio"].sheet-bashingdot:checked + span::before
+{
+    content: "∕" !important;
+    color: black;
+    background:rgba(146, 111, 54, 0.6);
+    font-size: 14px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    vertical-align: top;
+    font-weight: 900;
+    text-align:center;
+    text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 3px black;
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer input[type="radio"].sheet-lethaldot:checked + span::before
+{
+    content: "✖" !important;
+    /*color: #a80000;*/
+    color: black;
+    background: rgba(104, 83, 50, 0.8);
+    font-size: 14px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    vertical-align: middle;
+    text-align:left;
+    text-indent: -0.75px;
+    /*text-shadow: 0px 0px 1px red;*/
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer input[type="radio"].sheet-aggravateddot:checked + span::before
+{
+    content: "✖" !important;
+    /*color: #a80000;*/
+    color: black;
+    background: red;
+    font-size: 14px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    vertical-align: middle;
+    text-align:left;
+    text-indent: -0.75px;
+    font-weight: 900;
+}
+
+.sheet-variablecontainer .sheet-manaboxcontainer input[type="radio"].sheet-manadot:checked + span::before
+{
+    content: "Ψ";
+    /*color: #330000;*/
+    color: white;
+    background-color: black;
+    font-size: 11px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    vertical-align: top;
+    text-align:left;
+    text-indent: 0px;
+    /*text-shadow: 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold, 0px 0px 1px gold;*/
+    font-weight: 900;
+    /*background: rgba(177, 177, 177, 0.1);*/
+}
+
+.sheet-variablecontainer .sheet-manaboxcontainer input[type="radio"].sheet-essencedot:checked + span::before
+{
+    content: "Ξ";
+    /*color: #330000;*/
+    color: #333333;
+    background-color: white;
+    font-size: 11px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+    vertical-align: top;
+    text-align:left;
+    text-indent: 1.5px;
+    /*text-shadow: 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white, 0px 0px 1px white;*/
+    font-weight: 900;
+    /*background: rgba(177, 177, 177, 0.1);*/
+}
+
+
+.sheet-variablecontainer .sheet-healthboxcontainer input[type="radio"].sheet-whitedot,
+.sheet-variablecontainer .sheet-manaboxcontainer input[type="radio"].sheet-whitedot {
+    z-index: 102;
+}
+
+input.sheet-whitedot:checked ~ input.sheet-bashingdot,
+input.sheet-bashingdot:checked ~ input.sheet-lethaldot,
+input.sheet-lethaldot:checked ~ input.sheet-aggravateddot,
+input.sheet-whitedot:checked ~ input.sheet-manadot,
+input.sheet-manadot:checked ~ input.sheet-essencedot {
+    z-index: 103;
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer span,
+.sheet-variablecontainer .sheet-manaboxcontainer span {
+    display: none;
+}
+
+input.sheet-whitedot:checked ~ span.sheet-whitedot,
+input.sheet-bashingdot:checked ~ span.sheet-bashingdot,
+input.sheet-lethaldot:checked ~ span.sheet-lethaldot,
+input.sheet-aggravateddot:checked ~ span.sheet-aggravateddot,
+input.sheet-manadot:checked ~ span.sheet-manadot,
+input.sheet-essencedot:checked ~ span.sheet-essencedot {
+    display: inline-block;
+}
+
+.sheet-healthcontainer,
+.sheet-manaboxcontainer {
+    width: 13px;
+    margin-left: -13px;
+    display: inline-block;
+}
+
+/* Remove extra health and mana/essence boxes */
+.sheet-variablecontainer input[type="radio"].sheet-normal:checked ~ .sheet-healthboxcontainer,
+.sheet-variablecontainer input[type="radio"].sheet-manaboxspacer:checked ~ .sheet-manaboxcontainer
+{
+    display: none;
+}
+
+.sheet-variablecontainer input[type="radio"].sheet-normal:checked + span + .sheet-healthboxcontainer,
+.sheet-variablecontainer input[type="radio"].sheet-manaboxspacer:checked + span + .sheet-manaboxcontainer
+{
+    display: inline-block !important;
+}
+
+.sheet-variablecontainer input[type="radio"].sheet-normal + span + .sheet-healthboxcontainer + .sheet-woundpenalties
+{
+    position: relative;
+    display: none;
+}
+
+.sheet-variablecontainer input[type="radio"].sheet-normal:checked + span + .sheet-healthboxcontainer + .sheet-woundpenalties
+{
+    display: inline-block;
+}
+
+.sheet-variablecontainer input[type="radio"].sheet-normal:checked + span + .sheet-healthboxcontainer + .sheet-woundpenalties > span
+{
+    position: absolute;
+    top: 17px;
+    left: -45px;
+    width: 50px;
+    height: 10px;
+    font-size: 10px;
+}
+
+.sheet-variablecontainer .sheet-healthboxcontainer input[type="checkbox"] + span {
+    display: inline-block;
+}
+
+/*#endregion*/
+
+/*#region Misc Stuff?? */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+    width: 18px !important;
+    padding: 0px;
+    background: none;
+    color: black;
+    font-family: 'Bookman Old Style';
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: default;
+    box-shadow: none;
+    height: 18px;
+}
+
+/*.sheet-settings input[type=number] {
+    width: 28px;
+    padding: 2px;
+    background: none;
+    color: black;
+    font-family: 'Bookman Old Style';
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: default;
+
+    -moz-box-shadow: 0px 1px 0px #000;
+    -webkit-box-shadow: 0px 1px 0px #000;
+    box-shadow: 0px 1px 0px #000;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    margin-bottom: 0px;
+}*/
+
+div.sheet-derived {
+    font-size: 10px;
+}
+
+.sheet-derived input::-webkit-outer-spin-button,
+.sheet-derived input::-webkit-inner-spin-button {
+     display: none; /*<- Crashes Chrome on hover*/
+    -webkit-appearance: none;
+    margin: 0;  /*<-- Apparently some margin are still there even though it's hidden*/
+}
+
+.sheet-rowtext {
+    text-align: center;
+    vertical-align: top;
+}
+
+.sheet-rowtext input[type=text] {
+    padding: 0.1px;
+    height: 14px;
+}
+
+.sheet-merittable {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.sheet-merittable input[type=text] {
+    padding: 0.1px;
+    height: 14px;
+    width: 115px;
+}
+
+div.sheet-weaponpanel > div,
+div.sheet-weaponpanel > div > div,
+div.sheet-weaponpanel > div > div > div
+ {
+    height: 15px !important;
+    line-height: 15px !important;
+}
+
+input.sheet-weapon,
+input.sheet-weaponstat,
+select.sheet-weapon,
+select.sheet-weaponstat {
+    height: 15px !important;
+    line-height: 15px !important;
+}
+
+input[type=text].sheet-weaponstat {
+    width: 100%;
+    text-align: center;
+}
+input[type=text].sheet-weaponstat.sheet-rating,
+input[type=text].sheet-weaponstat.sheet-dmg {
+    width: 17px;
+}
+
+input[type=text].sheet-weaponstat.sheet-name {
+    width: calc(100% - 21px) !important;
+    text-align: left;
+}
+
+select.sheet-weaponstat.sheet-type,
+select.sheet-weaponstat.sheet-damagetype {
+    width: calc(100% - 24px) !important;
+    font-weight: normal;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: top;
+    margin: 0px;
+    padding: 0px;
+}
+
+select.sheet-weaponstat.sheet-type {
+    width: 100% !important;
+}
+
+select.sheet-weaponstat.sheet-arcana {
+    width: 100% !important;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+input[type=text].sheet-weaponstat.sheet-range {
+    width: 100%;
+    text-align: center;
+}
+
+input[type=text].sheet-weaponstat.sheet-mag {
+    width: 100%;
+    text-align: center;
+}
+
+input[type=text].sheet-weaponstat.sheet-desc {
+    width: calc(100% - 5px);
+    text-align: left;
+}
+
+input[type=checkbox].sheet-weaponstat.sheet-mana {
+    opacity: 1.0;
+    width: 10px;
+    height: 10px;
+    font-size: 12px;
+    border-radius: 1px;
+    border: solid 1px black;
+    line-height: 11px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(204, 153, 102,0.4);
+}
+
+.sheet-weaponpanel input {
+    border: none;
+}
+
+.sheet-weaponpanel select,
+.sheet-settings select,
+.sheet-expandedsheet select {
+    width: 100%;
+    height: 14px;
+    padding: 0px;
+    background: none;
+    color: black;
+    font-family: 'Bookman Old Style';
+    font-weight: bold;
+    font-size: 12px;
+    border: none;
+    cursor: default;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    margin-bottom: 0px;
+    line-height: 14px;
+}
+
+div.sheet-settings-page > span,
+div.sheet-settings-page > select,
+div.sheet-settings-page > input {
+    height: 15px;
+    line-height: 15px;
+    vertical-align: top;
+}
+
+div.sheet-settings-page > select {
+    width: 60%;
+}
+
+.sheet-expandedsheet select {
+    width: 100%;
+}
+
+.sheet-expandedsheet input[type="text"].sheet-partname {
+    width: 26%;
+}
+
+.sheet-expandedsheet input[type="text"].sheet-name {
+    width: 80%;
+}
+
+.sheet-expandedsheet input[type="text"].sheet-partpool {
+    width: 20px;
+    padding: 1px;
+    margin-left: 3px;
+    background: none;
+    color: black;
+    font-family: 'Bookman Old Style';
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: default;
+    /*-moz-box-shadow: 0px 1px 0px #000;
+    -webkit-box-shadow: 0px 1px 0px #000;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;*/
+    box-shadow: 0px 1px 0px #000;
+    border-radius: 0px;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    margin-bottom: 0px;
+}
+
+.sheet-expandedsheet .sheet-rollcontainer {
+    background: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/New%20World%20of%20Darkness%20Official/die.png') no-repeat center;
+    background-size: contain;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    float: right;
+}
+
+.sheet-customroll button:before {
+    font-family: "Courier" !important;
+    content: "Roll" !important;
+    background: none !important;
+}
+
+.sheet-customroll button {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+.sheet-expandedsheet textarea,
+.sheet-expandedsheet2 textarea {
+    resize:vertical;
+    width: calc(100% - 10px);
+    margin-top: 5px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.61);
+    border: 1px black solid;
+}
+
+.sheet-expandedsheet .sheet-customroll,
+.sheet-expandedsheet2 .sheet-customroll {
+    border: solid 1px black;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 15px;
+    background-color: rgba(61, 37, 14, 0.24)
+}
+
+.sheet-expandedsheet2 .sheet-customroll {
+    width: 95%;
+}
+
+.sheet-expandedsheet select.sheet-customroll {
+    width: 50%;
+    vertical-align: top;
+    padding: 0px;
+    border: none;
+    margin: 0px;
+    background: none !important;
+    font-weight: normal !important;
+}
+
+.sheet-vitae input[type=checkbox] {
+    margin-top: 0px;
+    width: 12px;
+}
+
+input.sheet-pagenum {
+    font-weight: normal !important;
+    width: 60% !important;
+}
+
+input[type=text].sheet-title {
+    text-align: center;
+    width: 300px;
+    font-size: 1.4em;
+    font-weight: bolder;
+    padding: 0px;
+}
+
+.sheet-expandedsheet2 {
+    text-align: center;
+}
+
+.sheet-expandedsheet2 > div > div
+{
+    width: 95%;
+}
+
+.sheet-expandedsheet2 > div > div.repcontainer,
+.sheet-expandedsheet2 > div > div.repcontainer > div.repitem
+{
+    width: 100%;
+}
+
+.sheet-expandedsheet2 .sheet-subheader {
+    width: 300px;
+    font-size: 1.4em;
+    font-weight: bolder;
+}
+/*#endregion*/
