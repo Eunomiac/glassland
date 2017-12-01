@@ -9,6 +9,8 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="attr sheetoptions pages page2" name="attr_pagenumber" title="Page2" value="2" />
     <span class="sheet-attr">Rolls</span>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="attr sheetoptions pages page3" name="attr_pagenumber" title="Page3" value="3" />
+    <span class="sheet-attr">Magic</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="attr sheetoptions pages page4" name="attr_pagenumber" title="Page4" value="4" />
     <span class="sheet-attr">Details</span>
     <br /><br />
     <div class="settings">
@@ -35,65 +37,35 @@
     <div class="background-image"></div>
 
     <!-- DICE ROLLER -->
-        <div class="diceroller" style="position:absolute; top: 0px; left: 880px;">
-            <table>
-                <tbody>
-                    <tr>
-                        <th colspan="2" class="sheet-bottom">
-                            DICE ROLLER
-                        </th>
-                    </tr>
-                    <tr class="rollstyle">
-                        <td rowspan="3" class="rollcontainer">
-                            <button type="roll" name="roll_check" value="@{rollstyle}@{rolltype}"></button>
-                        </td>
-                        <td>
-                            <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{roll_base}" title="Sheet Roll" checked="checked" />
-                            <span class="sheet-attr">Sheet Roll</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{rollattack}" />
-                            <span class="sheet-attr">Attack Roll</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="bottom">
-                            <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{rollsimple}" />
-                            <span class="sheet-attr">Simple Roll</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="4" class="rolldisplay">
-                            <textarea type="text" name="attr_rolldisplay"></textarea>
-                        </td>
-                        <td>
-                            <input type="radio" class="sheet-attr" name="attr_rolltype" value="*0+1)d10!cs>10}>10]]}} {{chance=1}}" />
-                            <span class="sheet-attr">Chance</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" class="sheet-attr" name="attr_rolltype" value=")d10!cs>8}>8]]}}" title="Normal" checked="checked" />
-                            <span class="sheet-attr">Normal</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" class="sheet-attr" name="attr_rolltype" value=")d10!>9cs>8}>8]]}} {{9again=1}}" />
-                            <span class="sheet-attr">9-Again</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" class="sheet-attr" name="attr_rolltype" value=")d10!>8cs>8}>8]]}} {{8again=1}}" />
-                            <span class="sheet-attr">8-Again</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="diceroller centered" style="margin-top: 5px;">
+            <div class="dicebutton col35">
+                <button type="roll" name="roll_check" value="@{rollstyle}@{rolltype}"></button>
+            </div>
+            <div class="dicerollertype col50 centered">
+                <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{roll_base}" title="Sheet Roll" checked="checked" />
+                <span class="sheet-attr">Sheet Roll</span>
+                <!--<input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{rollattack}" />
+                <span class="sheet-attr">Attack Roll</span>-->
+                <input type="radio" class="sheet-attr" name="attr_rollstyle" value="@{rollsimple}" />
+                <span class="sheet-attr">Simple Roll</span>
+            </div>
+            <div class="dicerollerdisplay col100 centered">
+                <textarea type="text" name="attr_rolldisplay"></textarea>
+            </div>
+            <div class="dicerollermods col100 leftalign">
+                <input type="radio" class="sheet-attr" name="attr_rolltype" style="width: 50px !important;" value="*0+1)d10!cs>10}>10]]}} {{chance=1}}" />
+                <span class="sheet-attr" style="margin-left: -55px !important;">Chance</span>&nbsp;
+                <input type="radio" class="sheet-attr" name="attr_rolltype" style="width: 50px !important;" value=")d10!cs>8}>8]]}}" title="Normal" checked="checked" />
+                <span class="sheet-attr" style="margin-left: -55px !important;">Normal</span>
+                <input type="radio" class="sheet-attr shortattr" name="attr_rolltype" value=")d10!>9cs>8}>8]]}} {{9again=1}}" />
+                <span class="sheet-attr shortattr">9A</span>
+                <input type="radio" class="sheet-attr shortattr" name="attr_rolltype" value=")d10!>8cs>8}>8]]}} {{8again=1}}" />
+                <span class="sheet-attr shortattr">8A</span>
+                <input type="radio" class="sheet-attr" name="attr_rolltype" style="width: 35px !important;" value=")d10ro<7!cs>8}>8]]}} {{roteroll=1}}" />
+                <span class="sheet-attr" style="margin-left: -37px !important;">Rote</span>
+            </div>
         </div>
+
     <!-- HEADER -->
     <img class="header mage" src="https://i.imgur.com/7uHSBPt.png">
     <img class="header mortal" src="https://i.imgur.com/7uHSBPt.png">
@@ -106,16 +78,6 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subheader">Customizable Attribute Settings</span>
         <br>
         <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Defense Trait: </span>
-        <select name="attr_defense_base">
-            <option value="(((@{dexterity} + @{wits}) - abs(@{dexterity} - @{wits})) / 2)">Lowest</option>
-            <option value="(((@{dexterity} + @{wits}) + abs(@{dexterity} - @{wits})) / 2)">Highest</option>
-            <option value="@{wits}">Wits</option>
-            <option value="@{dexterity}">Dexterity</option>
-            <option value="((((@{dexterity} + @{wits}) - abs(@{dexterity} - @{wits})) / 2) + (((@{athletics} + 0) + abs(@{athletics} - 0)) / 2))" checked="checked">Lowest + Athletics</option>
-        </select>
-        <br>
-        <br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>Base Size: </span><input type="number" name="attr_base_size" value="5" />
         <input type="checkbox" class="sheet-normal" name="attr_giant" value="1" /><span></span><span> Giant</span>
         <input type="checkbox" class="sheet-normal" name="attr_small_framed" value="-1" /><span></span><span> Small Framed</span>
@@ -807,7 +769,18 @@
     </div>
  </div>
 
+<!-- PAGE 3 -->
 <div class="expandedsheet2 clmn" style="vertical-align: top;">
+    <div class="col100 centered">
+        <span class="header horizborders">SPELL BUILDER</span>
+    </div><br/><br/><br/>
+    <div class="col100 centered">
+        <span class="subheader">Coming Soon...</span>
+    </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="expandedsheet3 clmn" style="vertical-align: top;">
     <div class="col50" style="vertical-align: top; text-align: left;">
         <div class="mage sheet-customroll extsheet2 centered">
             <span class="subheader">Nimbus</span><br>
@@ -888,7 +861,8 @@
                         <input type="hidden" name="attr_paradoxrisk" value="0" />
                         <input type="hidden" name="attr_combomax" value="0" />
                         <input type="hidden" name="attr_attackarcana" value="0" />
-                        <input type="hidden" name="attr_aimingstat" value="0" />
+                        <input type="hidden" name="attr_aimingstat" value="((((@{athletics} + @{firearms}) + abs(@{athletics} - @{firearms})) / 2) + @{competency})" />
+                        <input type="hidden" name="attr_defense_base" value="((((@{dexterity} + @{wits}) - abs(@{dexterity} - @{wits})) / 2) + (((@{athletics} + 0) + abs(@{athletics} - 0)) / 2))" />
 
 
                     </div>
@@ -1053,6 +1027,9 @@
                                         {{#8again}}
                                         8A
                                         {{/8again}}
+                                        {{#roteroll}}
+                                        ROTE
+                                        {{/roteroll}}
                                     </td>
                                 </tr>
                             </table>
@@ -1080,6 +1057,9 @@
                                         {{#8again}}
                                         8A
                                         {{/8again}}
+                                        {{#roteroll}}
+                                        ROTE
+                                        {{/roteroll}}
                                     </td>
                                 </tr>
                             </table>
@@ -1121,6 +1101,9 @@
                                         {{#8again}}
                                         8A
                                         {{/8again}}
+                                        {{#roteroll}}
+                                        ROTE
+                                        {{/roteroll}}
                                     </td>
                                 </tr>
                             </table>
@@ -1190,6 +1173,9 @@
                                         {{#8again}}
                                         8A
                                         {{/8again}}
+                                        {{#roteroll}}
+                                        ROTE
+                                        {{/roteroll}}
                                     </td>
                                 </tr>
                             </table>

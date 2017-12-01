@@ -91,6 +91,8 @@ input.sheet-settingssheet:checked ~ div.sheet-skills,
 input.sheet-settingssheet:checked ~ div.sheet-othertraits,
 input.sheet-settingssheet:checked ~ div.sheet-expandedsheet,
 input.sheet-settingssheet:checked ~ div.sheet-expandedsheet2,
+input.sheet-settingssheet:checked ~ div.sheet-expandedsheet3,
+input.sheet-settingssheet:checked ~ div.sheet-diceroller,
 input.sheet-pages:checked ~ .sheet-sheettype,
 input.sheet-pages:checked ~ input.sheet-sheettype + span,
 input.sheet-page2:checked ~ div.sheet-3colrow,
@@ -102,7 +104,12 @@ input.sheet-page3:checked ~ div.sheet-3colrow,
 input.sheet-page3:checked ~ div.sheet-2colrow,
 input.sheet-page3:checked ~ div.sheet-clmn,
 input.sheet-page3:checked ~ div.sheet-skills,
-input.sheet-page3:checked ~ div.sheet-othertraits{
+input.sheet-page3:checked ~ div.sheet-othertraits,
+input.sheet-page4:checked ~ div.sheet-3colrow,
+input.sheet-page4:checked ~ div.sheet-2colrow,
+input.sheet-page4:checked ~ div.sheet-clmn,
+input.sheet-page4:checked ~ div.sheet-skills,
+input.sheet-page4:checked ~ div.sheet-othertraits{
     display: none !important;
 }
 
@@ -111,6 +118,10 @@ input.sheet-page2:checked ~ div.sheet-expandedsheet {
 }
 
 input.sheet-page3:checked ~ div.sheet-expandedsheet2 {
+    display: inline-block !important;
+}
+
+input.sheet-page4:checked ~ div.sheet-expandedsheet3 {
     display: inline-block !important;
 }
 
@@ -165,7 +176,8 @@ input.sheet-supernalsheet:checked ~ .sheet-background-image::after {
 
 input.sheet-settingssheet:checked ~ .sheet-background-image::after,
 input.sheet-page2:checked ~ .sheet-background-image::after,
-input.sheet-page3:checked ~ .sheet-background-image::after{
+input.sheet-page3:checked ~ .sheet-background-image::after,
+input.sheet-page4:checked ~ .sheet-background-image::after{
     background-size: 100%;
 }
 
@@ -183,6 +195,7 @@ input.sheet-settingssheet:not(:checked) ~ input.sheet-supernalsheet:checked ~ im
     left: 0;
     right: 0;
     margin-top: -50px;
+    margin-left: 100px;
 }
 
 input.sheet-settingssheet:checked ~ div.sheet-header.sheet-settings {
@@ -193,7 +206,8 @@ input.sheet-settingssheet:checked ~ div.sheet-header.sheet-settings {
 input.sheet-settingssheet:checked + span.sheet-attr,
 input.sheet-page1:checked + span.sheet-attr,
 input.sheet-page2:checked + span.sheet-attr,
-input.sheet-page3:checked + span.sheet-attr{
+input.sheet-page3:checked + span.sheet-attr,
+input.sheet-page4:checked + span.sheet-attr{
     color: #dcc7a4;
     text-shadow: 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 1px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 2px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 5px black, 0px 0px 10px black, 0px 0px 10px black, 0px 0px 10px;
 }
@@ -266,6 +280,7 @@ input.sheet-supernalsheet:checked ~ div * input.sheet-weapon:checked + span + .s
 
 .sheet-expandedsheet,
 .sheet-expandedsheet2,
+.sheet-expandedsheet3,
 .sheet-rolltemplates {
     display: none;
 }
@@ -442,58 +457,84 @@ input.sheet-supernalsheet:checked ~ div * input.sheet-weapon:checked + span + .s
 /*#region Diceroller */
 .sheet-diceroller {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ffff99;
+    top: 55px;
+    left: 40px;
+    background: none;
+    width: 200px;
 }
 
-.charsheet .sheet-diceroller table th {
+.charsheet .sheet-diceroller .sheet-dicebutton {
+    background: url('https://i.imgur.com/VuOYR76.png') no-repeat center;
+    background-size: contain;
+    /*border-bottom: solid 1px #000000;*/
+    height: 50px;
+    vertical-align: middle;
+    /*margin-top: 10px;*/
+}
+
+.charsheet .sheet-diceroller .sheet-dicebutton button {
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    padding-top: 30px;
+    vertical-align: baseline;
+}
+
+.charsheet .sheet-diceroller div.sheet-dicerollertype {
+    padding: 5px 0px;
+    vertical-align: middle;
+}
+.charsheet .sheet-diceroller .sheet-dicerollertype span {
+    display: inline-block;
+    width: 90%;
+}
+
+.charsheet .sheet-diceroller .sheet-dicerollertype input {
+    width: 90%;
+}
+
+.charsheet .sheet-diceroller .sheet-dicerollermods input.sheet-shortattr {
+    width: 20px !important;
+}
+
+.charsheet .sheet-diceroller .sheet-dicerollermods span.sheet-shortattr {
+    margin-left: -20px !important;
+}
+
+.charsheet .sheet-diceroller div.sheet-dicerollerdisplay {
+    margin: 5px 0px;
+}
+
+.charsheet .sheet-diceroller .sheet-dicerollerdisplay textarea {
+    resize: none;
+    overflow: hidden;
+    box-shadow: none;
+    border: 1px black solid;
+    padding: 0px;
+    text-align: center;
+    height: 55px;
+    pointer-events: none;
+    /*width: 120px;*/
+    width: calc(100% - 10px);
+    background-color: rgba(255, 255, 255, 0.61);
+}
+
+/*.charsheet .sheet-diceroller table th {
     text-align: center;
     font-size: 1.3em;
 }
 
-.charsheet .sheet-diceroller table {
-    border: solid 1px #000000;
-}
 
-.charsheet .sheet-diceroller table td {
-    border-right: solid 1px #000000;
-}
-
-.charsheet .sheet-diceroller table .sheet-bottom {
-    border-bottom: solid 1px #000000;
-}
-
-.charsheet .sheet-diceroller .sheet-rollcontainer {
-    background: url('https://raw.githubusercontent.com/Roll20/roll20-character-sheets/master/New%20World%20of%20Darkness%20Official/die.png') no-repeat center;
-    background-size: contain;
-    border-bottom: solid 1px #000000;
-}
 
 .charsheet .sheet-diceroller button:before {
     font-family: "Courier" !important;
     content: "Roll" !important;
     background: none !important;
-}
+}*/
 
-.charsheet .sheet-diceroller button {
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-}
 
-.charsheet .sheet-diceroller .sheet-rolldisplay textarea {
-    resize: none;
-    overflow: hidden;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border: none;
-    padding: 0px;
-    text-align: center;
-    height: 70px;
-    pointer-events: none;
-    width: 120px;
-}
+
+
 /*#endregion*/
 
 /*#region General Formatting */
@@ -1592,7 +1633,8 @@ div.sheet-settings-page > select {
 }
 
 .sheet-expandedsheet textarea,
-.sheet-expandedsheet2 textarea {
+.sheet-expandedsheet2 textarea,
+.sheet-expandedsheet3 textarea {
     resize:vertical;
     width: calc(100% - 10px);
     margin-top: 5px;
@@ -1602,7 +1644,8 @@ div.sheet-settings-page > select {
 }
 
 .sheet-expandedsheet .sheet-customroll,
-.sheet-expandedsheet2 .sheet-customroll {
+.sheet-expandedsheet2 .sheet-customroll,
+.sheet-expandedsheet3 .sheet-customroll {
     border: solid 1px black;
     border-radius: 4px;
     padding: 5px;
@@ -1610,7 +1653,7 @@ div.sheet-settings-page > select {
     background-color: rgba(61, 37, 14, 0.24)
 }
 
-.sheet-expandedsheet2 .sheet-customroll {
+.sheet-expandedsheet3 .sheet-customroll {
     width: 95%;
 }
 
@@ -1642,22 +1685,22 @@ input[type=text].sheet-title {
     padding: 0px;
 }
 
-.sheet-expandedsheet2 {
+.sheet-expandedsheet3 {
     text-align: center;
 }
 
-.sheet-expandedsheet2 > div > div
+.sheet-expandedsheet3 > div > div
 {
     width: 95%;
 }
 
-.sheet-expandedsheet2 > div > div.repcontainer,
-.sheet-expandedsheet2 > div > div.repcontainer > div.repitem
+.sheet-expandedsheet3 > div > div.repcontainer,
+.sheet-expandedsheet3 > div > div.repcontainer > div.repitem
 {
     width: 100%;
 }
 
-.sheet-expandedsheet2 .sheet-subheader {
+.sheet-expandedsheet3 .sheet-subheader {
     width: 300px;
     font-size: 1.4em;
     font-weight: bolder;
